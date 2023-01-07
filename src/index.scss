@@ -7,6 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
 }
 
 code {
@@ -16,4 +17,26 @@ code {
 
 *{
   color: white;
+}
+
+/* Scroll bar */
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(30, 32, 42);
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $branding_color_one;
+  border-radius: 4px;
+}
+/* Corner */
+::-webkit-scrollbar-corner{
+  background: $backdrop_color_one;
 }

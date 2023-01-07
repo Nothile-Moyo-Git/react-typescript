@@ -1,0 +1,32 @@
+@import '../../styles/Shared.scss';
+
+
+.bm{
+
+    &-burger-button{
+        width: 2rem;
+        height: 2rem;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
+
+    &-icon{
+        animation: fade-in 0.5s linear;
+    }
+
+    &-menu{
+        z-index: 1;
+        position: relative;
+
+        @include backgroundGradientEffect(){
+            background: $branding_gradient_one;
+        }
+    }
+
+    &-item-list{
+        z-index: 1;
+        position: relative;
+    }
+
+}

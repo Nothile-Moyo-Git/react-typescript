@@ -14,10 +14,12 @@ interface ComponentProps {
 const Layout = ({ children } : ComponentProps) => {
 
     return(
-        <main>
+        <main className="layout" id="page-wrap">
             <Header/>
             <Backdrop/>
-            {children}
+            <div>
+                {children}
+            </div>
         </main>
     );
 };

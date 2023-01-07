@@ -3,30 +3,15 @@
  */
 
 import "./Header.scss";
-import { scaleRotate as Menu } from "react-burger-menu";
-import { NavLink } from "react-router-dom";
-import { GrClose } from "react-icons/gr";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
     return(
         <header className="header">
 
-            <p>TypeScript App</p>
+            <Link to ="/">TypeScript App</Link>
 
-            <Menu customBurgerIcon={ <img src="../assets/burger-menu.svg" alt="burger-icon"/> }>
-                <button>
-                    <GrClose/>
-                </button>
-            </Menu>
-
-            <NavLink to="/">
-                <p>View Todo's</p>
-            </NavLink>
-
-            <NavLink to="/add-todo">
-                <p>Add Todo</p>
-            </NavLink>
         </header>
     );
 };

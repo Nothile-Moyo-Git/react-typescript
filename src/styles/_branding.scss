@@ -1,4 +1,6 @@
 $branding_color_one: #861657;
+$branding_color_two: #6b1246;
+$branding_color_three: #922d68;
 $branding_color_four: #FFA69E;
 $brading_color_seven: #A4508B;
 $branding_color_ten: #5F0A87;
@@ -12,4 +14,7 @@ $backdrop_color_two: rgba(0, 0, 0);
 // Bpx shadows
 $box_shadow: ( 0px 0px 20px 0px rgba(0,0,0,0.4) );
 $button_shadow: ( 0px 0px 15px 0px rgba(0,0,0,0.2) );
+
+// Gradients
+$branding_gradient_one: linear-gradient(60deg, $branding_color_one, $branding_color_three, $branding_color_two);
 
