@@ -44,15 +44,15 @@ const NavMenu = () => {
             isOpen={ isMenuOpen }
             onClose={ closeMenuHandler }
         >
-            <button onClick={ closeMenuHandler}>
+            <button onClick={ closeMenuHandler} className="menu__close">
                 <GrClose/>
             </button>
 
-            <NavLink to="/">
+            <NavLink to="/" exact={true} className="menu__link">
                 <p>View Todo's</p>
             </NavLink>
 
-            <NavLink to="/add-todo">
+            <NavLink to="/add-todo" exact={true} className="menu__link">
                 <p>Add Todo</p>
             </NavLink>
         </Menu>
