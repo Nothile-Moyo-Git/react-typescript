@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/react-typescript/static/css/main.dc60ec94.css",
-    "main.js": "/react-typescript/static/js/main.efc53626.js",
+    "main.css": "/react-typescript/static/css/main.5622cf79.css",
+    "main.js": "/react-typescript/static/js/main.c4ce199d.js",
     "static/js/787.1f013cd5.chunk.js": "/react-typescript/static/js/787.1f013cd5.chunk.js",
     "index.html": "/react-typescript/index.html",
     "static/media/burger-menu.svg": "/react-typescript/static/media/burger-menu.938e5cf99767dbb8949abb6ba8cd58fa.svg",
-    "main.dc60ec94.css.map": "/react-typescript/static/css/main.dc60ec94.css.map",
-    "main.efc53626.js.map": "/react-typescript/static/js/main.efc53626.js.map",
+    "main.5622cf79.css.map": "/react-typescript/static/css/main.5622cf79.css.map",
+    "main.c4ce199d.js.map": "/react-typescript/static/js/main.c4ce199d.js.map",
     "787.1f013cd5.chunk.js.map": "/react-typescript/static/js/787.1f013cd5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dc60ec94.css",
-    "static/js/main.efc53626.js"
+    "static/css/main.5622cf79.css",
+    "static/js/main.c4ce199d.js"
   ]
 }
