@@ -2,4 +2,15 @@
 
 .layout{
     min-height: 100vh;
+    color: white;
+
+    &__content{
+        z-index: 1;
+        position: relative;
+        padding: 1rem 0;
+    }
+
+    button{
+        color: black;
+    }
 }

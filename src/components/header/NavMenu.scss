@@ -33,18 +33,28 @@
         height: 100%;
     }
 
+    @include breakpoint(mobile){
+
+        &-menu-wrap{
+            width: 100% !important;
+        }
+
+    }
+
 }
 
 .menu{
 
     &__close{
-        margin: 0.75rem auto;
         color: white;
         background: transparent;
         border: none;
         padding: 0;
         height: 1.25rem;
         cursor: pointer;
+        width: 100%;
+        padding-top: 1rem;
+        padding-bottom: 2.25rem;
 
         svg{
             width: 1.25rem;

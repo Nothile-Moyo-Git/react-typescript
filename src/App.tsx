@@ -7,17 +7,23 @@
 import './App.scss';
 import Layout from './components/layout/Layout';
 import NavMenu from './components/header/NavMenu';
+import queryDB from './backend/queryDB';
 
 function App() {
+
+  const testQuery = async () => {
+    const todos = await queryDB("POST", "learn react 3");
+    console.log(todos);
+  };
+
   return (
     <div className="App" id="outer-container">
 
       <NavMenu/>
 
       <Layout>
-         Body of page <br/>
-         Halloumi is awesome <br/>
-         Overthinking <br/>
+        <p>Body of page</p>
+        <button onClick={testQuery}>Test</button>
       </Layout>
 
     </div>

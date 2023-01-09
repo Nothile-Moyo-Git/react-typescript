@@ -17,9 +17,9 @@ const Layout = ({ children } : ComponentProps) => {
         <main className="layout" id="page-wrap">
             <Header/>
             <Backdrop/>
-            <div>
+            <section className="layout__content">
                 {children}
-            </div>
+            </section>
         </main>
     );
 };
