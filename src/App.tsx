@@ -8,6 +8,7 @@ import './App.scss';
 import Layout from './components/layout/Layout';
 import NavMenu from './components/header/NavMenu';
 import queryDB from './backend/queryDB';
+import Constellation from './components/assets/constellation.jpg';
 
 function App() {
 
@@ -17,7 +18,13 @@ function App() {
   };
 
   return (
-    <div className="App" id="outer-container">
+    <div className="App" id="outer-container" 
+      style={{ 
+        backgroundImage: `url(${Constellation})`,
+        backgroundSize: `cover`,
+        backgroundRepeat: `no-repeat`
+      }}
+    >
 
       <NavMenu/>
 
