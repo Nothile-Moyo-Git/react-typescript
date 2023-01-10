@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/react-typescript/static/css/main.02e21d14.css",
-    "main.js": "/react-typescript/static/js/main.6da05dd5.js",
+    "main.css": "/react-typescript/static/css/main.c262ffd3.css",
+    "main.js": "/react-typescript/static/js/main.ded5f8bb.js",
     "static/js/787.1f013cd5.chunk.js": "/react-typescript/static/js/787.1f013cd5.chunk.js",
-    "static/media/constellation.jpg": "/react-typescript/static/media/constellation.61d4f5f8620bc408f51a.jpg",
+    "static/media/constellation.jpg": "/react-typescript/static/media/constellation.e8c859c0fc051241d281.jpg",
     "index.html": "/react-typescript/index.html",
     "static/media/burger-menu.svg": "/react-typescript/static/media/burger-menu.938e5cf99767dbb8949abb6ba8cd58fa.svg",
-    "main.02e21d14.css.map": "/react-typescript/static/css/main.02e21d14.css.map",
-    "main.6da05dd5.js.map": "/react-typescript/static/js/main.6da05dd5.js.map",
+    "main.c262ffd3.css.map": "/react-typescript/static/css/main.c262ffd3.css.map",
+    "main.ded5f8bb.js.map": "/react-typescript/static/js/main.ded5f8bb.js.map",
     "787.1f013cd5.chunk.js.map": "/react-typescript/static/js/787.1f013cd5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.02e21d14.css",
-    "static/js/main.6da05dd5.js"
+    "static/css/main.c262ffd3.css",
+    "static/js/main.ded5f8bb.js"
   ]
 }
