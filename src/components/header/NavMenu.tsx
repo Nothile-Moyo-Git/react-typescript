@@ -12,6 +12,8 @@ import { useState } from "react";
 import { scaleRotate as Menu } from "react-burger-menu";
 import { NavLink } from "react-router-dom";
 import { GrClose } from "react-icons/gr";
+import { FaListAlt } from "react-icons/fa";
+import { BsPlusSquareFill } from "react-icons/bs";
 import BurgerIcon from '../assets/burger-menu.svg';
 import './NavMenu.scss';
 
@@ -49,10 +51,12 @@ const NavMenu = () => {
             </button>
 
             <NavLink to="/" exact={true} className="menu__link">
+                <FaListAlt/>
                 <p>View Todo's</p>
             </NavLink>
 
             <NavLink to="/add-todo" exact={true} className="menu__link">
+                <BsPlusSquareFill/>
                 <p>Add Todo</p>
             </NavLink>
         </Menu>

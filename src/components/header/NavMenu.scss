@@ -70,6 +70,13 @@
         padding: 0.75rem 0;
         text-decoration: none;
         transition: $standard_transition;
+        display: flex !important;
+        flex-direction: row;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        grid-column-gap: 0.5rem;
+        z-index: 1;
 
         &.active{
             z-index: 1;
@@ -85,6 +92,16 @@
             @include backgroundGradientEffect(){
                 background: $branding_gradient_two;
             }
+        }
+
+        svg{
+            z-index: 1;
+            width: 1.05rem;
+            height: 1.05rem;
+        }
+
+        path{
+            stroke: white;
         }
     }
 }

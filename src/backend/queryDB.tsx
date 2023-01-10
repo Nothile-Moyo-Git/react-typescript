@@ -20,7 +20,7 @@ let result : any;
 // const demoString = "Learn React";
 
 // Query DB wrapper
-const queryDB = async (method : string, body : string) => {
+const queryDB = async (method : string, body : string = "", todoId : string = "") => {
 
     // Pass the correct arguments based on current method
     switch (method){
@@ -30,7 +30,7 @@ const queryDB = async (method : string, body : string) => {
             break;
 
         case "GET":
-
+            result = await performRequest(`${endpoint}.json`, body, method);
             break;
 
         case "PUT":
@@ -52,13 +52,14 @@ const queryDB = async (method : string, body : string) => {
 // Perform request handler, executes the API request
 const performRequest = async (queryEndpoint : string, body : string, method: string) => {
 
+    
     // Perform our main query to the backend
     const response = await fetch(queryEndpoint,{
         method,        
         headers: {
             'Content-Type' : 'application/json'
         },
-        body: JSON.stringify(body)
+        body: body.length === 0 ? undefined : JSON.stringify(body)
     });
 
     // If our request fails, then send an error for it to be checked. Note: it could be the missing .json issue
