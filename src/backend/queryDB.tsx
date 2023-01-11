@@ -34,11 +34,11 @@ const queryDB = async (method : string, body : string = "", todoId : string = ""
             break;
 
         case "PUT":
-
+            result = await performRequest(`${endpoint}/${todoId}.json`, body, method);
             break;
 
         case "DELETE": 
-
+            result = await performRequest(`${endpoint}/${todoId}.json`, body, method);
             break;
         default:
             throw new Error("Error: invalid method, try one of these: POST, GET, PUT, DELETE");
