@@ -4,17 +4,24 @@
  * @returns list of to do list items
  */
 import React, { ReactNode } from "react";
+
+interface Todo {
+    id : string,
+    task : string
+}
 interface ComponentProps {
-    children: ReactNode;
-    tasks : string[]
+    tasks : Todo[]
 }
 
-const Todos = ({ children , tasks } : ComponentProps) => {
+const Todos : React.FC<ComponentProps> = ({ tasks }) => {
 
     return(
         <ul>
-            <li>Learn React</li>
-            <li>Learn TypeScript</li>
+            { 
+                tasks.map((task : Todo, index : number ) => {
+                    return <li key={index}>{task.task}</li>
+                })
+            }
         </ul>
     );
 };

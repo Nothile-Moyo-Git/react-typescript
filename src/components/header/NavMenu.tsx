@@ -8,7 +8,7 @@
  * @returns NavMenu : FunctionComponent
  */
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { scaleRotate as Menu } from "react-burger-menu";
 import { NavLink } from "react-router-dom";
 import { GrClose } from "react-icons/gr";
@@ -21,7 +21,7 @@ interface MenuState {
     isOpen : boolean
 };
 
-const NavMenu = () => {
+const NavMenu : React.FC = () => {
 
     // Menu state
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);

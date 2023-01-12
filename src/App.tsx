@@ -10,14 +10,21 @@ import NavMenu from './components/header/NavMenu';
 import queryDB from './backend/queryDB';
 import Constellation from './components/assets/constellation.jpg';
 import { useState, useEffect } from "react";
-
+import Todos from './components/todos/Todos';
 
 interface Todo {
   id: string,
   task: string
 };
 
-function App() {
+const DUMMY_TODOS = [
+  {id : "-NLNKqAe174dloxwnjFk", task : "learn react 1"},
+  {id : "-NLNL4xVAyZ-xZgA8T04", task : "learn react 2"},
+  {id : "-NLNLZ-wPjX2UE6dT3EL", task : "learn react 3"},
+  {id : "-NLXK06pKJTeGpgNK5ec", task : "learn react 4"}
+];
+
+const App : React.FC = () => {
 
   // To do list
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -66,7 +73,7 @@ function App() {
       <NavMenu/>
 
       <Layout>
-        <p>Body of page</p>
+        <Todos tasks={DUMMY_TODOS}/>
         <button onClick={addToDo}>Add to do</button>
         <button onClick={getToDos}>Query to do's</button>
         <button onClick={updateTodo}>Update to do</button>
