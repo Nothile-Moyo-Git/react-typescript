@@ -11,6 +11,7 @@ import queryDB from './backend/queryDB';
 import Constellation from './components/assets/constellation.jpg';
 import { useState, useEffect } from "react";
 import Todos from './components/todos/Todos';
+import TodoClass from './components/models/todo';
 
 interface Todo {
   id: string,
@@ -22,6 +23,11 @@ const DUMMY_TODOS = [
   {id : "-NLNL4xVAyZ-xZgA8T04", task : "learn react 2"},
   {id : "-NLNLZ-wPjX2UE6dT3EL", task : "learn react 3"},
   {id : "-NLXK06pKJTeGpgNK5ec", task : "learn react 4"}
+];
+
+const DUMMY_TODOS2 = [
+  new TodoClass("-NLNKqAe174dloxwnjFk", "Learn React"),
+  new TodoClass("-NLNL4xVAyZ-xZgA8T04", "Learn Typescript")
 ];
 
 const App : React.FC = () => {
@@ -67,13 +73,15 @@ const App : React.FC = () => {
     console.log(todos);
   },[todos]);
 
+  console.log(DUMMY_TODOS2);
+
   return (
     <div className="App" id="outer-container" style={{ backgroundImage: `url(${Constellation})`, backgroundSize: `contain`, backgroundRepeat: `repeat`}}>
 
       <NavMenu/>
 
       <Layout>
-        <Todos tasks={DUMMY_TODOS}/>
+        <Todos tasks={DUMMY_TODOS2}/>
         <button onClick={addToDo}>Add to do</button>
         <button onClick={getToDos}>Query to do's</button>
         <button onClick={updateTodo}>Update to do</button>

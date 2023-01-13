@@ -3,14 +3,15 @@
  * 
  * @returns list of to do list items
  */
-import React, { ReactNode } from "react";
+import React from "react";
+import TodoClass from "../models/todo";
 
 interface Todo {
     id : string,
     task : string
 }
 interface ComponentProps {
-    tasks : Todo[]
+    tasks : TodoClass[]
 }
 
 const Todos : React.FC<ComponentProps> = ({ tasks }) => {
@@ -18,8 +19,8 @@ const Todos : React.FC<ComponentProps> = ({ tasks }) => {
     return(
         <ul>
             { 
-                tasks.map((task : Todo, index : number ) => {
-                    return <li key={index}>{task.task}</li>
+                tasks.map((task : TodoClass) => {
+                    return <li key={task.id}>{task.text}</li>
                 })
             }
         </ul>
