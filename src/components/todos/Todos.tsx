@@ -1,15 +1,18 @@
 /**
  * To do component, renders an unordered list of to-do's with context being the global state
+ * Receives the todo list from the App component which queries the backend and also applies the changes to global state
  * 
- * @returns list of to do list items
+ * @returns list of to do list items (<ul>)
  */
 import React from "react";
 import TodoClass from "../models/todo";
+import TodoItem from "./TodoItem";
 
+/*
 interface Todo {
     id : string,
     task : string
-}
+} */
 interface ComponentProps {
     tasks : TodoClass[]
 }
@@ -20,7 +23,7 @@ const Todos : React.FC<ComponentProps> = ({ tasks }) => {
         <ul>
             { 
                 tasks.map((task : TodoClass) => {
-                    return <li key={task.id}>{task.text}</li>
+                    return <TodoItem key={task.id} task={task}/>
                 })
             }
         </ul>
