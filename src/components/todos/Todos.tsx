@@ -7,6 +7,7 @@
 import React from "react";
 import TodoClass from "../models/todo";
 import TodoItem from "./TodoItem";
+import './Todos.scss';
 
 /*
 interface Todo {
@@ -20,7 +21,7 @@ interface ComponentProps {
 const Todos : React.FC<ComponentProps> = ({ tasks }) => {
 
     return(
-        <ul>
+        <ul className="todos">
             { 
                 tasks.map((task : TodoClass) => {
                     return <TodoItem key={task.id} task={task}/>

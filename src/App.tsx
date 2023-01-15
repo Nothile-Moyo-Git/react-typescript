@@ -9,9 +9,11 @@ import Layout from './components/layout/Layout';
 import NavMenu from './components/header/NavMenu';
 import queryDB from './backend/queryDB';
 import Constellation from './components/assets/constellation.jpg';
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Todos from './components/todos/Todos';
 import TodoClass from './components/models/todo';
+import { Route, Switch, Redirect } from "react-router-dom";
+import LoadingSpinner from './components/UI/LoadingSpinner';
 
 interface Todo {
   id: string,
@@ -19,13 +21,6 @@ interface Todo {
 };
 
 const DUMMY_TODOS = [
-  {id : "-NLNKqAe174dloxwnjFk", task : "learn react 1"},
-  {id : "-NLNL4xVAyZ-xZgA8T04", task : "learn react 2"},
-  {id : "-NLNLZ-wPjX2UE6dT3EL", task : "learn react 3"},
-  {id : "-NLXK06pKJTeGpgNK5ec", task : "learn react 4"}
-];
-
-const DUMMY_TODOS2 = [
   new TodoClass("-NLNKqAe174dloxwnjFk", "Learn React"),
   new TodoClass("-NLNL4xVAyZ-xZgA8T04", "Learn Typescript")
 ];
@@ -73,7 +68,7 @@ const App : React.FC = () => {
     console.log(todos);
   },[todos]);
 
-  console.log(DUMMY_TODOS2);
+  console.log(DUMMY_TODOS);
 
   return (
     <div className="App" id="outer-container" style={{ backgroundImage: `url(${Constellation})`, backgroundSize: `contain`, backgroundRepeat: `repeat`}}>
@@ -81,11 +76,37 @@ const App : React.FC = () => {
       <NavMenu/>
 
       <Layout>
-        <Todos tasks={DUMMY_TODOS2}/>
-        <button onClick={addToDo}>Add to do</button>
-        <button onClick={getToDos}>Query to do's</button>
-        <button onClick={updateTodo}>Update to do</button>
-        <button onClick={deleteTodo}>Delete to do</button>
+
+        <Suspense
+          fallback={<LoadingSpinner/>}
+        >
+        
+          <Switch>
+
+            <Route exact path="/">
+              <Todos tasks={DUMMY_TODOS}/>
+              <button onClick={addToDo}>Add to do</button>
+              <button onClick={getToDos}>Query to do's</button>
+              <button onClick={updateTodo}>Update to do</button>
+              <button onClick={deleteTodo}>Delete to do</button>
+            </Route>
+
+            <Route exact path="/add-todo">
+
+            </Route>
+
+            <Route path="/edit/:id">
+              
+            </Route>
+
+            <Route path="*">
+
+            </Route>
+
+          </Switch>
+
+        </Suspense>
+
       </Layout>
 
     </div>

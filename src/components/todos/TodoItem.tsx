@@ -7,13 +7,14 @@
 
 import React from "react";
 import TodoClass from "../models/todo";
+import './TodoItem.scss';
 
 const TodoItem : React.FC<{task : TodoClass}> = (props) => {
 
     const task = props?.task;
 
     return(
-        <li>{task.text}</li>
+        <li className="todo-item">{task.text}</li>
     );
 }
 
