@@ -12,8 +12,9 @@ import Constellation from './components/assets/constellation.jpg';
 import { useState, useEffect, Suspense } from "react";
 import Todos from './components/todos/Todos';
 import TodoClass from './components/models/todo';
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import LoadingSpinner from './components/UI/LoadingSpinner';
+import NewTodo from './components/todos/NewTodo';
 
 interface Todo {
   id: string,
@@ -92,7 +93,7 @@ const App : React.FC = () => {
             </Route>
 
             <Route exact path="/add-todo">
-
+              <NewTodo/>
             </Route>
 
             <Route path="/edit/:id">
