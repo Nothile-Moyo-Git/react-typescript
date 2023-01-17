@@ -13,7 +13,7 @@
     }
 
     button{
-        color: black;
-        margin: 1rem auto 0 auto;
+        margin: 0.5rem auto 0 auto;
+        box-shadow: $button_shadow;
     }
 }

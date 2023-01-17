@@ -23,16 +23,17 @@
         flex-direction: row;
         align-items: center;
         text-decoration: none;
-        grid-column-gap: 0.75rem;
+        grid-column-gap: 0.5rem;
         z-index: 10;
 
         p{
             margin: 0;
+            font-size: 1.1rem;
         }
 
         svg{
-            width: 1.25rem;
-            height: 1.25rem;
+            width: 1.3rem;
+            height: 1.3rem;
         }
     }
 }
