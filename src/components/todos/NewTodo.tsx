@@ -62,11 +62,12 @@ const NewTodo : React.FC = () => {
 
     };
 
+    useEffect(() => {},[]);
 
     return(
         <form className="new-todo" onSubmit={submitHandler}>
 
-            <label id="taskLabel" htmlFor="task" className="new-todo__label">Add task*</label>
+            <label id="taskLabel" htmlFor="task" className="new-todo__label">{isInputValid ? "Add Task*" : "Error: Please enter more than 2 characters" }</label>
                 
             <input
                 name="task"
@@ -74,12 +75,12 @@ const NewTodo : React.FC = () => {
                 value={todoText}
                 onChange={updateInput}
                 placeholder="Please enter the task you need to add to the list..."
-                className="new-todo__input"
+                className={isInputValid ? "new-todo__input" : "new-todo__input new-todo__input--error"}
                 aria-labelledby="taskLabel"
                 aria-required
             />
 
-            <button className="new-todo__submit">Submit</button>
+            <button className={isInputValid ? "new-todo__submit" : "new-todo__submit new-todo__submit--error"} disabled={!isInputValid}>Submit</button>
 
         </form>
     );

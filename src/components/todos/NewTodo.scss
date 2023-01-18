@@ -34,29 +34,59 @@
         color: black;
         width: auto;
         z-index: 1;
-        box-shadow: $button_shadow;
+        box-shadow: $box_shadow;
         font-size: 1rem;
+        transition: $quick_transition;
+
+        &--error{
+            color: $branding_color_one;
+            border-color: red;
+        }
     }
 
     &__submit{
         width: auto;
         margin: auto;
-        z-index: 1;
         background-color: transparent;
-        border: 2px solid white;
         padding: 0.35rem 1rem;
+        border: none;
         border-radius: 5px;
-        color: white;
+        color: $branding_color_one;
         cursor: pointer;
         transition: all 0.25s linear;
         font-weight: 500;
         font-size: 1rem;
+        box-shadow: $box_shadow;
+        filter: contrast(85%);
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
 
-        will-change: background-color;
+        -webkit-filter: contrast(85%);
+        will-change: background-color, filter;
 
         @include state(){
+            filter: contrast(125%);
+            -webkit-filter: contrast(125%);
+        }
+
+        @include backgroundGradientEffect(){
+            background: $branding_gradient_three;
+
+        }
+
+        &--error{
+            cursor: no-drop;
             color: $branding_color_one;
-            background: white;
+            background: $branding_color_gray;
+            filter: contrast(100%);
+            -webkit-filter: contrast(100%);
+            
+            @include backgroundGradientEffect(){
+                background: $branding_color_gray;
+                filter: contrast(100%);
+                -webkit-filter: contrast(100%);
+            }
         }
     }
 }

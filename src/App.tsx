@@ -32,8 +32,8 @@ const App : React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   // Add to do to the list
-  const addToDo = async () => {
-    const todos = await queryDB("POST", "learn react 4");
+  const addToDo = async (task : string) => {
+    const todos = await queryDB("POST", task);
     console.log(todos);
   };
 
@@ -86,7 +86,7 @@ const App : React.FC = () => {
 
             <Route exact path="/">
               <Todos tasks={DUMMY_TODOS}/>
-              <button onClick={addToDo}>Add to do</button>
+              <button onClick={() => { addToDo("Learn react 4"); }}>Add to do</button>
               <button onClick={getToDos}>Query to do's</button>
               <button onClick={updateTodo}>Update to do</button>
               <button onClick={deleteTodo}>Delete to do</button>
