@@ -4,24 +4,29 @@
  * It uses form validation and also outputs information on a successful request
  */
 
+import queryDB from "../../backend/queryDB";
 import "./NewTodo.scss";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-const NewTodo : React.FC = () => {
+interface ComponentProps{
+    test : () => void,
+    addTask : (task : string) => Promise<void>
+}
+
+const NewTodo = ({addTask, test} : ComponentProps) => {
 
     // declaring states, we need to keep track of the current input and the submission status of the form
     const [todoText, setTodoText] = useState<string>("");
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
     const [isInputValid, setIsInputValid] = useState<boolean>(true);
-    const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
     // Validate form inputs
     const validateInput = (input : string) => {
-        setIsInputValid(input.length > 2);
+        return(input.length > 2);
     }
 
     // Submit form and perform query to backend
-    const submitHandler = (event : React.SyntheticEvent) => {
+    const submitHandler = async (event : React.SyntheticEvent) => {
         
         event.preventDefault();
 
@@ -35,16 +40,16 @@ const NewTodo : React.FC = () => {
         }
 
         // validate input
-        validateInput(target.task.value);
+        const isValid = validateInput(target.task.value);
+        setIsInputValid(isValid);
 
         // If our inputs are valid, the form is valid. We only have one entry here so we make this part simpler
-        setIsFormValid(isInputValid);
 
-        isFormValid === true && console.log("Form is valid");
-
-        console.log(isInputValid);
-        console.log(isFormValid);
-        console.log(target?.task.value);
+        if (isValid === true) {
+            const results = await queryDB("POST", todoText);
+            console.log(results);
+        }
+        
     };
 
     const updateInput = (event : React.FormEvent<HTMLInputElement>) => {
@@ -58,11 +63,10 @@ const NewTodo : React.FC = () => {
         setTodoText(element.value);
 
         // If our form has been submitted, then validate the input
-        isSubmitted === true && validateInput(element.value);
+        isSubmitted === true && setIsInputValid( validateInput(element.value) );
 
     };
 
-    useEffect(() => {},[]);
 
     return(
         <form className="new-todo" onSubmit={submitHandler}>

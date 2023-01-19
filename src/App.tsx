@@ -37,6 +37,10 @@ const App : React.FC = () => {
     console.log(todos);
   };
 
+  const testFunction = () => {
+    console.log("test function");
+  };
+
   // Retrieve all todos from the list
   const getToDos = async () => {
 
@@ -93,7 +97,7 @@ const App : React.FC = () => {
             </Route>
 
             <Route exact path="/add-todo">
-              <NewTodo/>
+              <NewTodo addTask={addToDo} test={testFunction}/>
             </Route>
 
             <Route path="/edit/:id">
