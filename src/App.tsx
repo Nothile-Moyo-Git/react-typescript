@@ -9,12 +9,13 @@ import Layout from './components/layout/Layout';
 import NavMenu from './components/header/NavMenu';
 import queryDB from './backend/queryDB';
 import Constellation from './components/assets/constellation.jpg';
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, Suspense, useContext } from "react";
 import Todos from './components/todos/Todos';
 import TodoClass from './components/models/todo';
 import { Route, Switch } from "react-router-dom";
 import LoadingSpinner from './components/UI/LoadingSpinner';
 import NewTodo from './components/todos/NewTodo';
+import { TodoContext } from './components/context/todo-context';
 
 interface Todo {
   id: string,
@@ -26,25 +27,20 @@ const DUMMY_TODOS = [
   new TodoClass("-NLNL4xVAyZ-xZgA8T04", "Learn Typescript")
 ];
 
-const App : React.FC = () => {
+const App = () => {
+
+  // Todo context
+  const todoContext = useContext(TodoContext);
 
   // To do list
   const [todos, setTodos] = useState<Todo[]>([]);
-
-  // Add to do to the list
-  const addToDo = async (task : string) => {
-    const todos = await queryDB("POST", task);
-    console.log(todos);
-  };
-
-  const testFunction = () => {
-    console.log("test function");
-  };
 
   // Retrieve all todos from the list
   const getToDos = async () => {
 
     const todos = await queryDB("GET");
+    todoContext?.format(todos);
+
     const keys = Object.keys(todos);
 
     let formattedTodos : Todo[] = [];
@@ -90,14 +86,13 @@ const App : React.FC = () => {
 
             <Route exact path="/">
               <Todos tasks={DUMMY_TODOS}/>
-              <button onClick={() => { addToDo("Learn react 4"); }}>Add to do</button>
               <button onClick={getToDos}>Query to do's</button>
               <button onClick={updateTodo}>Update to do</button>
               <button onClick={deleteTodo}>Delete to do</button>
             </Route>
 
             <Route exact path="/add-todo">
-              <NewTodo addTask={addToDo} test={testFunction}/>
+              <NewTodo/>
             </Route>
 
             <Route path="/edit/:id">

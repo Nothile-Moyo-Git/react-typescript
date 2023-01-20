@@ -68,7 +68,7 @@ const performRequest = async (queryEndpoint : string, body : string, method: str
     }
 
     // Render a popup to let the user know that the request has been successful
-    alert("Successfully updated the backend");
+    alert("Successfully queried the backend");
 
     // Query the backend to extract the updated resources so we can add it to our global context
     const todos = await fetch(`${endpoint}.json`);

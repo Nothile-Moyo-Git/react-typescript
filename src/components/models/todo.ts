@@ -4,8 +4,8 @@
  * Is currently instantiated when each item is generated for the list
  * Note: This is a dummy file from the course, the real solution for this can be found in /src/backend/queryDB.ts
  * 
+ * @param todoId : string
  * @param todoText : string
- * 
  */
 
 class TodoClass{

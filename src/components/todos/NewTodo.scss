@@ -48,10 +48,10 @@
         width: auto;
         margin: auto;
         background-color: transparent;
-        padding: 0.35rem 1rem;
+        padding: 0.4rem 1.5rem;
         border: none;
         border-radius: 5px;
-        color: $branding_color_one;
+        color: white;
         cursor: pointer;
         transition: all 0.25s linear;
         font-weight: 500;
@@ -71,7 +71,7 @@
         }
 
         @include backgroundGradientEffect(){
-            background: $branding_gradient_three;
+            background: $branding_gradient_two;
 
         }
 

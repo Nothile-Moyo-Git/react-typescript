@@ -11,7 +11,7 @@ interface ComponentProps {
     children: ReactNode;
 }
 
-const Layout : React.FC<ComponentProps> = ({ children }) => {
+const Layout = ({ children } : ComponentProps) => {
 
     return(
         <main className="layout" id="page-wrap">

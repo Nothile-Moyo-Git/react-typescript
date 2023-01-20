@@ -2,18 +2,19 @@
  * New Todo component
  * Houses a form which performs a post request to my firebase endpoint
  * It uses form validation and also outputs information on a successful request
+ * 
+ * @returns NewTodo : JSX Element
  */
 
-import queryDB from "../../backend/queryDB";
 import "./NewTodo.scss";
+import queryDB from "../../backend/queryDB";
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-interface ComponentProps{
-    test : () => void,
-    addTask : (task : string) => Promise<void>
-}
+const NewTodo = () => {
 
-const NewTodo = ({addTask, test} : ComponentProps) => {
+    // Creating our history so we can navigate to the tasks page upon successful submission
+    const history = useHistory();
 
     // declaring states, we need to keep track of the current input and the submission status of the form
     const [todoText, setTodoText] = useState<string>("");
@@ -48,6 +49,7 @@ const NewTodo = ({addTask, test} : ComponentProps) => {
         if (isValid === true) {
             const results = await queryDB("POST", todoText);
             console.log(results);
+            history.push("/");
         }
         
     };
