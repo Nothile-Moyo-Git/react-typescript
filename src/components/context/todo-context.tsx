@@ -7,9 +7,13 @@
  * We have an interface we use and the type is an array of Todo class instances
  */
 
-import React, { useState } from "react";
-import TodoClass from "../models/todo";
-import { ReactNode } from "react";
+import React, { useState, ReactNode } from "react";
+
+// Todo interface, showcases the structure of a todo item in the list. 
+interface Todo {
+    id: string,
+    task: string
+  };
 
 // Allowing an explicit type definition for children
 interface ComponentProps {
@@ -21,9 +25,9 @@ interface FirebaseResponse{
     [key : string] : string
 }
 
-// Use the class model we defined as our interface
+// 
 interface Todos {
-    todos : TodoClass[] | []
+    todos : Todo[] | []
     format : (todos : FirebaseResponse) => void
 }
 
@@ -32,11 +36,25 @@ export const TodoContext = React.createContext<Todos | null>(null);
 export const TodosContextProvider = ({ children } : ComponentProps) => {
 
     // Create our todo global state, we set it to type Todos or never[] for empty arrays
-    const [todoItems, setTodoItems] = useState<TodoClass[] | []>([]);
+    const [todoItems, setTodoItems] = useState<Todo[] | []>([]);
 
+    // Since our firebase reponse object doesn't use an id as a property but as an identifier, we do this to extract it into an id we can reference.
+    // We also use this for generating keys in lists
     const formatTodos = (todos : FirebaseResponse) => {
-        console.log("Formatting");
-        console.log(todos);
+
+        // Create guarded array
+        let formattedTodos : Todo[] = [];
+
+        // If our response isn't null (empty array), we extract the keys by mapping the object using an index signature to extract the identifier
+        if (todos){ 
+            const keys = Object.keys(todos);
+  
+            keys.forEach((key : string) => {
+              formattedTodos.push({id : key, task : todos[key]});
+            });
+        }
+        setTodoItems(formattedTodos);
+
     }
 
     return (

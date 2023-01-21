@@ -5,17 +5,15 @@
  * @returns list of to do list items (<ul>)
  */
 import React from "react";
-import TodoClass from "../models/todo";
 import TodoItem from "./TodoItem";
 import './Todos.scss';
 
-/*
 interface Todo {
     id : string,
     task : string
-} */
+}
 interface ComponentProps {
-    tasks : TodoClass[]
+    tasks : Todo[] | []
 }
 
 const Todos : React.FC<ComponentProps> = ({ tasks }) => {
@@ -23,7 +21,7 @@ const Todos : React.FC<ComponentProps> = ({ tasks }) => {
     return(
         <ul className="todos">
             { 
-                tasks.map((task : TodoClass) => {
+                tasks.map((task : Todo) => {
                     return <TodoItem key={task.id} task={task}/>
                 })
             }

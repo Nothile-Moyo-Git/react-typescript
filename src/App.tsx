@@ -33,43 +33,26 @@ const App = () => {
   const todoContext = useContext(TodoContext);
 
   // To do list
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const todos = todoContext?.todos;
 
-  // Retrieve all todos from the list
-  const getToDos = async () => {
+    // Retrieve all todos from the list
+    const getToDos = async () => {
 
-    const todos = await queryDB("GET");
-    todoContext?.format(todos);
+      const todos = await queryDB("GET");
 
-    const keys = Object.keys(todos);
+      todoContext?.format(todos);
 
-    let formattedTodos : Todo[] = [];
+    };
 
-    keys.forEach((key : string) => {
-      formattedTodos.push({id : key, task : todos[key]});
-    });
-
-    setTodos(formattedTodos);
-
-    formattedTodos = [];
-  };
-
-  // Update a todo from the list using a PUT request
-  const updateTodo = async () => {
-    const updatedTodos = await queryDB("PUT", "Learn React New", todos[0].id);
-    setTodos(updatedTodos);
-  };
-
-  const deleteTodo = async () => {
-    const updatedTodos = await queryDB("DELETE", undefined, todos[3].id);
-    setTodos(updatedTodos);
-  };
 
   useEffect(() => {
-    console.log(todos);
-  },[todos]);
 
-  console.log(DUMMY_TODOS);
+    getToDos();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
+
+  console.log(todos);
 
   return (
     <div className="App" id="outer-container" style={{ backgroundImage: `url(${Constellation})`, backgroundSize: `contain`, backgroundRepeat: `repeat`}}>
@@ -85,10 +68,8 @@ const App = () => {
           <Switch>
 
             <Route exact path="/">
-              <Todos tasks={DUMMY_TODOS}/>
+              <Todos tasks={todos ? todos : []}/>
               <button onClick={getToDos}>Query to do's</button>
-              <button onClick={updateTodo}>Update to do</button>
-              <button onClick={deleteTodo}>Delete to do</button>
             </Route>
 
             <Route exact path="/add-todo">

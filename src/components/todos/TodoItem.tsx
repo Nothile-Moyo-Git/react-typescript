@@ -6,15 +6,19 @@
  */
 
 import React from "react";
-import TodoClass from "../models/todo";
 import './TodoItem.scss';
 
-const TodoItem : React.FC<{task : TodoClass}> = (props) => {
+interface Todo {
+    id : string,
+    task : string
+}
+
+const TodoItem : React.FC<{task : Todo}> = (props) => {
 
     const task = props?.task;
 
     return(
-        <li className="todo-item">{task.text}</li>
+        <li className="todo-item">{task.task}</li>
     );
 }
 
