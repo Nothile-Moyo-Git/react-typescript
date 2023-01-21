@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/react-typescript/static/css/main.0cdc490e.css",
-    "main.js": "/react-typescript/static/js/main.0caae3c2.js",
+    "main.js": "/react-typescript/static/js/main.c785d473.js",
     "static/js/787.1f013cd5.chunk.js": "/react-typescript/static/js/787.1f013cd5.chunk.js",
     "static/media/constellation.jpg": "/react-typescript/static/media/constellation.e8c859c0fc051241d281.jpg",
     "index.html": "/react-typescript/index.html",
     "static/media/burger-menu.svg": "/react-typescript/static/media/burger-menu.938e5cf99767dbb8949abb6ba8cd58fa.svg",
     "main.0cdc490e.css.map": "/react-typescript/static/css/main.0cdc490e.css.map",
-    "main.0caae3c2.js.map": "/react-typescript/static/js/main.0caae3c2.js.map",
+    "main.c785d473.js.map": "/react-typescript/static/js/main.c785d473.js.map",
     "787.1f013cd5.chunk.js.map": "/react-typescript/static/js/787.1f013cd5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0cdc490e.css",
-    "static/js/main.0caae3c2.js"
+    "static/js/main.c785d473.js"
   ]
 }
