@@ -53,6 +53,7 @@ export const TodosContextProvider = ({ children } : ComponentProps) => {
               formattedTodos.push({id : key, task : todos[key]});
             });
         }
+        
         setTodoItems(formattedTodos);
 
     }

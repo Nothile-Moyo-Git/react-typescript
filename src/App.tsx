@@ -9,41 +9,29 @@ import Layout from './components/layout/Layout';
 import NavMenu from './components/header/NavMenu';
 import queryDB from './backend/queryDB';
 import Constellation from './components/assets/constellation.jpg';
-import { useState, useEffect, Suspense, useContext } from "react";
+import { useEffect, Suspense, useContext } from "react";
 import Todos from './components/todos/Todos';
-import TodoClass from './components/models/todo';
 import { Route, Switch } from "react-router-dom";
 import LoadingSpinner from './components/UI/LoadingSpinner';
 import NewTodo from './components/todos/NewTodo';
 import { TodoContext } from './components/context/todo-context';
 
-interface Todo {
-  id: string,
-  task: string
-};
-
-const DUMMY_TODOS = [
-  new TodoClass("-NLNKqAe174dloxwnjFk", "Learn React"),
-  new TodoClass("-NLNL4xVAyZ-xZgA8T04", "Learn Typescript")
-];
-
 const App = () => {
 
   // Todo context
-  const todoContext = useContext(TodoContext);
+  const todoContextInstance = useContext(TodoContext);
 
   // To do list
-  const todos = todoContext?.todos;
+  const todos = todoContextInstance?.todos;
 
-    // Retrieve all todos from the list
-    const getToDos = async () => {
+  // Retrieve all todos from the list
+  const getToDos = async () => {
 
-      const todos = await queryDB("GET");
+    const todos = await queryDB("GET");
 
-      todoContext?.format(todos);
+    todoContextInstance?.format(todos);
 
-    };
-
+  };
 
   useEffect(() => {
 
@@ -55,7 +43,7 @@ const App = () => {
   console.log(todos);
 
   return (
-    <div className="App" id="outer-container" style={{ backgroundImage: `url(${Constellation})`, backgroundSize: `contain`, backgroundRepeat: `repeat`}}>
+    <div className="app" id="outer-container" style={{ backgroundImage: `url(${Constellation})`, backgroundSize: `cover`, backgroundRepeat: `repeat`}}>
 
       <NavMenu/>
 
@@ -69,7 +57,7 @@ const App = () => {
 
             <Route exact path="/">
               <Todos tasks={todos ? todos : []}/>
-              <button onClick={getToDos}>Query to do's</button>
+              <button className="app__button" onClick={getToDos}>Query to do's</button>
             </Route>
 
             <Route exact path="/add-todo">

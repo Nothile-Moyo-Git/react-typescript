@@ -8,13 +8,15 @@
 
 import "./NewTodo.scss";
 import queryDB from "../../backend/queryDB";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { TodoContext } from "../context/todo-context";
 
 const NewTodo = () => {
 
     // Creating our history so we can navigate to the tasks page upon successful submission
     const history = useHistory();
+    const todoContextInstance = useContext(TodoContext);
 
     // declaring states, we need to keep track of the current input and the submission status of the form
     const [todoText, setTodoText] = useState<string>("");
@@ -47,8 +49,12 @@ const NewTodo = () => {
         // If our inputs are valid, the form is valid. We only have one entry here so we make this part simpler
 
         if (isValid === true) {
-            const results = await queryDB("POST", todoText);
-            console.log(results);
+
+            // Submit the new task and retrieve the updated todos and then go back to the home page
+            const todos = await queryDB("POST", todoText);
+
+            todoContextInstance?.format(todos);
+
             history.push("/");
         }
         

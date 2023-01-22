@@ -4,7 +4,6 @@
  * 
  * @returns list of to do list items (<ul>)
  */
-import React from "react";
 import TodoItem from "./TodoItem";
 import './Todos.scss';
 
@@ -16,13 +15,13 @@ interface ComponentProps {
     tasks : Todo[] | []
 }
 
-const Todos : React.FC<ComponentProps> = ({ tasks }) => {
+const Todos = ({ tasks } : ComponentProps) => {
 
     return(
         <ul className="todos">
             { 
-                tasks.map((task : Todo) => {
-                    return <TodoItem key={task.id} task={task}/>
+                tasks.map((task : Todo, index : number) => {
+                    return <TodoItem key={task.id} task={task.task} position={index}/>
                 })
             }
         </ul>

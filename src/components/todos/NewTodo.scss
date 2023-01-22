@@ -68,6 +68,7 @@
         @include state(){
             filter: contrast(125%);
             -webkit-filter: contrast(125%);
+            scale : 1.03;
         }
 
         @include backgroundGradientEffect(){

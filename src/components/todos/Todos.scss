@@ -3,6 +3,10 @@
 .todos{
     animation: fade-in 0.3s linear;
     list-style-type: none;
-    margin: 0;
+    margin: 2rem auto;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: 2rem;
+    width: 100%;
 }
