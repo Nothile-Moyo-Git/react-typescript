@@ -16,8 +16,15 @@ interface ComponentProps {
 const TodoItem = ({task, position} : ComponentProps) => {
 
     return(
-        <li className="todo-item" style={{ animationDelay : `${position / 2}s`}}>{task}</li>
+        <li className="todo-item" style={{ animationDelay : `${position / 2}s`}}>
+            <p className="todo-item__task">{task}</p>
+            <div className="todo-item__buttons">
+                <button className="todo-item__button">Edit</button>
+                <button className="todo-item__button">Delete</button>
+            </div>
+        </li>
     );
+
 }
 
 export default TodoItem;
