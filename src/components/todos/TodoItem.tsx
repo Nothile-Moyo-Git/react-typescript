@@ -6,23 +6,39 @@
  */
 
 import './TodoItem.scss';
+import Tilt from "react-parallax-tilt";
+import { NavLink } from 'react-router-dom';
 
 interface ComponentProps {
+    id : string,
     key : string,
     task : string,
     position : number
 };
 
-const TodoItem = ({task, position} : ComponentProps) => {
+const TodoItem = ({id, task, position} : ComponentProps) => {
+
+    
 
     return(
-        <li className="todo-item" style={{ animationDelay : `${position / 2}s`}}>
+        <Tilt 
+            className="todo-item" 
+            style={{ animationDelay : `${position / 2}s` }}
+            tiltMaxAngleX={10}
+            tiltMaxAngleY={10}
+            glareEnable={true}
+            glarePosition="all"
+            glareMaxOpacity={0.5}
+            glareBorderRadius={"90"}
+            glareColor={"#861657"}
+        >
             <p className="todo-item__task">{task}</p>
             <div className="todo-item__buttons">
-                <button className="todo-item__button">Edit</button>
+                <NavLink to={`edit/${id}`} className="todo-item__button">Edit</NavLink>
                 <button className="todo-item__button">Delete</button>
             </div>
-        </li>
+            
+        </Tilt>
     );
 
 }

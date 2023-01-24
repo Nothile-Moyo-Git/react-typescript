@@ -11,6 +11,7 @@ import queryDB from './backend/queryDB';
 import Constellation from './components/assets/constellation.jpg';
 import { useEffect, Suspense, useContext } from "react";
 import Todos from './components/todos/Todos';
+import EditTodo from './components/todos/EditTodo';
 import { Route, Switch } from "react-router-dom";
 import LoadingSpinner from './components/UI/LoadingSpinner';
 import NewTodo from './components/todos/NewTodo';
@@ -65,7 +66,7 @@ const App = () => {
             </Route>
 
             <Route path="/edit/:id">
-              
+              <EditTodo/>
             </Route>
 
             <Route path="*">

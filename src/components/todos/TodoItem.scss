@@ -14,8 +14,11 @@
     justify-content: space-evenly;
     flex-direction: column;
     font-size: 2rem;
-    box-shadow: $box_shadow;
     animation: fade-in 0.3s linear;
+
+    @include state(){
+        box-shadow: $box_shadow_pink;
+    }
 
     &__task{
         text-align: center;
@@ -30,9 +33,9 @@
     &__button{
         position: relative;
         overflow: hidden;
-        width: 150px;
+        width: 125px;
         z-index: 1;
-        padding: 0.5rem 1.5rem;
+        padding: 0.5rem 0;
         font-size: 1.25rem;
         cursor: pointer;
         border: none;
@@ -41,9 +44,11 @@
         box-shadow: $box_shadow;
         transition: $quick_transition;
         filter: contrast(110%);
+        margin: 0.5rem auto 0.5rem auto;
+        text-decoration: none;
 
         @include state(){
-            filter: contrast(90%);;
+            filter: contrast(85%);;
         }
     
         @include backgroundGradientEffect(){

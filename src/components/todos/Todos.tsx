@@ -21,7 +21,7 @@ const Todos = ({ tasks } : ComponentProps) => {
         <ul className="todos">
             { 
                 tasks.map((task : Todo, index : number) => {
-                    return <TodoItem key={task.id} task={task.task} position={index}/>
+                    return <TodoItem key={task.id} id={task.id} task={task.task} position={index}/>
                 })
             }
         </ul>
