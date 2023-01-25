@@ -14,7 +14,7 @@
     box-shadow: $box_shadow_pink;
 
     @include backgroundGradientEffect(){
-        background: $branding_color_one;
+        background: $branding_gradient_one;
     }
 
     &__label{
