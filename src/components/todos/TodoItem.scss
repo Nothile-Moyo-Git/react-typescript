@@ -17,7 +17,7 @@
     animation: fade-in 0.3s linear;
 
     @include state(){
-        box-shadow: $box_shadow_pink;
+        box-shadow: $box_shadow_pink_strong;
     }
 
     &__task{

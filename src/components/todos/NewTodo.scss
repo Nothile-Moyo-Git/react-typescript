@@ -12,7 +12,7 @@
     animation: fade-in 0.3s linear;
     position: relative;
     border-radius: 5px;
-    box-shadow: $box_shadow;
+    box-shadow: $box_shadow_pink;
     overflow: hidden;
 
     @include backgroundGradientEffect(){

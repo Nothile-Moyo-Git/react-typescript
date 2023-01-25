@@ -52,7 +52,6 @@ const queryDB = async (method : string, body : string = "", todoId : string = ""
 // Perform request handler, executes the API request
 const performRequest = async (queryEndpoint : string, body : string, method: string) => {
 
-    
     // Perform our main query to the backend
     const response = await fetch(queryEndpoint,{
         method,        

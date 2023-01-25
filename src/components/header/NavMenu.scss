@@ -11,6 +11,10 @@
         top: 1rem;
     }
 
+    &-menu-wrap{
+        box-shadow: $box_shadow_pink;
+    }
+
     &-icon{
         animation: fade-in 0.5s linear;
     }
