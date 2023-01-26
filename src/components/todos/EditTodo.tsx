@@ -7,33 +7,75 @@
  * @returns EditTodo : JSX
 */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import './EditTodo.scss';
 import { useParams } from "react-router-dom";
+import { TodoContext } from '../context/todo-context';
+import queryDB from "../../backend/queryDB";
 
 interface ParamTypes {
     id : string
 }
 
-const EditTodo = () => {
+interface Todo{
+    id : string,
+    task : string
+}
 
-    // We're using taskRef here instead of using state to reduce the performance impact
-    const taskRef = React.useRef<HTMLInputElement>(null);
+const EditTodo = () => {
 
     // Get the slug from the URL
     const slug = useParams<ParamTypes>();
 
-    // Get the post ID dynamically
+    // Get the post ID dynamically. This will be used to filter the array
     const id = slug.id;
 
-    // Perform an api request to firebase, we'll be performing a PUT request here using the ID from the browser as the object key in firebase
-    const submitFormHandler = (event : React.FormEvent) => {
+    // Get the todos from our context and filter the current item we're working it. 
+    // We'll initialise the edit to do text to this to make it simpler to edit
+    const todoContextInstance = React.useContext(TodoContext);
+
+    // Set tasks for filtering
+    const tasks : Todo[] | undefined = todoContextInstance?.todos;
+
+    const currentTask = tasks?.filter((task : Todo) => {
+        return task.id === id;
+    });
+
+    // We're using taskRef here instead of using state to reduce the performance impact
+    const [task, setTask] = React.useState<string>("");
+
+    // Upodate our input string
+    const updateTaskHandler = (event : React.ChangeEvent<{ value : string }>) => {
 
         event.preventDefault();
 
-
-
+        setTask(event.target.value);
     }
+
+    // Perform an api request to firebase, we'll be performing a PUT request here using the ID from the browser as the object key in firebase
+    const submitFormHandler = async (event : React.FormEvent) => {
+
+        event.preventDefault();
+
+        // Update the resource in firebase
+        const response = await queryDB("PUT", task, id);
+
+        // Update the list of our todo items
+        todoContextInstance?.format(response);
+
+        alert("Success! Entry edited");
+
+    };
+
+    useEffect(() => {
+
+
+        if ( currentTask && currentTask.length > 0 ) {
+            setTask(currentTask[0].task);
+        }
+   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[todoContextInstance]);
 
     return (
         <form className="edit-todo" onSubmit={submitFormHandler}>
@@ -41,7 +83,8 @@ const EditTodo = () => {
             <input
                 type="text"
                 name="task"
-                ref={taskRef}
+                value={task}
+                onChange={updateTaskHandler}
                 aria-labelledby="taskLabel"
                 aria-required
                 className="edit-todo__input"
