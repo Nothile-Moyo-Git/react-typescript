@@ -1,13 +1,17 @@
 /**
  * TodoItem component, takes a todo item from the array of Todos from the todos component
- * Renders the todo on the page, and handles all the necessary logic required for it
+ * Renders the todo on the page, and handles all the necessary logic required for it.
+ * We're using parallax tilt cards which can be found here: https://www.npmjs.com/package/react-parallax-tilt
  * 
  * @returns a list item containing the todo information and handlers for logic (<li>)
  */
 
+import React from 'react';
 import './TodoItem.scss';
+import queryDB from "../../backend/queryDB";
 import Tilt from "react-parallax-tilt";
 import { Link } from 'react-router-dom';
+import { TodoContext } from '../context/todo-context';
 
 interface ComponentProps {
     id : string,
@@ -17,6 +21,25 @@ interface ComponentProps {
 };
 
 const TodoItem = ({id, task, position} : ComponentProps) => {
+
+    // Initialize the context of the app
+    const TodoContextInstance = React.useContext(TodoContext);
+
+    // Delete the current todo item and then update the todos in the list and trigger a re-render for them
+    const deleteTodoHandler = async ( event : React.FormEvent) => {
+
+        // Prevent the page from reloading
+        event.preventDefault();
+
+        // Delete the todo from firebase
+        const todos = await queryDB("DELETE", "", id); 
+
+        // Update the todos in our context
+        TodoContextInstance?.format(todos);
+
+        // show a popup to inform the user that the todo has been deleted
+        alert("Todo successfully deleted");
+    };
 
     return(
         <Tilt 
@@ -33,7 +56,7 @@ const TodoItem = ({id, task, position} : ComponentProps) => {
             <p className="todo-item__task">{task}</p>
             <div className="todo-item__buttons">
                 <Link to={`edit/${id}`} className="todo-item__button">Edit</Link>
-                <button className="todo-item__button">Delete</button>
+                <button onClick={deleteTodoHandler} className="todo-item__button">Delete</button>
             </div>
             
         </Tilt>

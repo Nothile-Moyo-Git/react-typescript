@@ -13,6 +13,7 @@
     color: white;
     padding: 0 1rem;
     overflow: hidden;
+    animation: fade-in 0.5s linear;
     
     @include backgroundGradientEffect(){
         background: $branding_gradient_one;

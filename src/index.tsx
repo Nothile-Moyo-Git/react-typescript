@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <TodosContextProvider>
     <BrowserRouter basename="/react-typescript">
-      <App />
+      <App/>
     </BrowserRouter>
   </TodosContextProvider>
 );

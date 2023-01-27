@@ -17,6 +17,8 @@ interface ComponentProps {
 
 const Todos = ({ tasks } : ComponentProps) => {
 
+    // Delete component handler. We pass this to the child component 
+
     return(
         <ul className="todos">
             { 

@@ -34,14 +34,13 @@ const App = () => {
 
   };
 
+  // Get todos when the component renders
   useEffect(() => {
 
     getToDos();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
-
-  console.log(todos);
 
   return (
     <div className="app" id="outer-container" style={{ backgroundImage: `url(${Constellation})`, backgroundSize: `cover`, backgroundRepeat: `repeat`}}>
@@ -58,7 +57,6 @@ const App = () => {
 
             <Route exact path="/">
               <Todos tasks={todos ? todos : []}/>
-              <button className="app__button" onClick={getToDos}>Query to do's</button>
             </Route>
 
             <Route exact path="/add-todo">
