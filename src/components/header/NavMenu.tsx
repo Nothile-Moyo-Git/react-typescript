@@ -5,7 +5,7 @@
  * 
  * It uses the react-burger-menu package
  * 
- * @returns NavMenu : FunctionComponent
+ * @returns NavMenu : JSX
  */
 
 import React, { useState } from "react";
@@ -21,7 +21,7 @@ interface MenuState {
     isOpen : boolean
 };
 
-const NavMenu : React.FC = () => {
+const NavMenu = () => {
 
     // Menu state
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);

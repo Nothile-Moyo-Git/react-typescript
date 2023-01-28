@@ -17,8 +17,6 @@ const endpoint = "https://react-typescript-69b75-default-rtdb.europe-west1.fireb
 
 let result : any;
 
-// const demoString = "Learn React";
-
 // Query DB wrapper
 const queryDB = async (method : string, body : string = "", todoId : string = "") => {
 
@@ -65,9 +63,6 @@ const performRequest = async (queryEndpoint : string, body : string, method: str
     if (!response.ok) {
         throw new Error("Error: request failed, please check endpoint");
     }
-
-    // Render a popup to let the user know that the request has been successful
-    // alert("Successfully queried the backend");
 
     // Query the backend to extract the updated resources so we can add it to our global context
     const todos = await fetch(`${endpoint}.json`);

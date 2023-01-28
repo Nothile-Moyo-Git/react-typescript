@@ -8,6 +8,7 @@
 */
 
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import './EditTodo.scss';
 import { useParams } from "react-router-dom";
 import { TodoContext } from '../context/todo-context';
@@ -23,6 +24,9 @@ interface Todo{
 }
 
 const EditTodo = () => {
+
+    // Create an instance of the history object 
+    const history = useHistory();
 
     // Get the slug from the URL
     const slug = useParams<ParamTypes>();
@@ -65,6 +69,9 @@ const EditTodo = () => {
 
         alert("Success! Entry edited");
 
+        // Redirect to the home page.
+        history.push("/");
+
     };
 
     useEffect(() => {
@@ -94,5 +101,5 @@ const EditTodo = () => {
     );
 };
 
-export default EditTodo;
+export default React.memo(EditTodo);
 

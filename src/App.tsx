@@ -1,21 +1,27 @@
 /**
  * App component, houses the nav menu, header and also routing for the pages in our to-do list
+ * The App component renders twice, initially and then once the API request is executed and global state has todos
  * Components are lazyloaded where possible for performance gains
  * Memoization is also implemented where possible
+ * 
+ * @returns App : JSX
  */
 
+// impoorts
 import './App.scss';
 import Layout from './components/layout/Layout';
 import NavMenu from './components/header/NavMenu';
 import queryDB from './backend/queryDB';
 import Constellation from './components/assets/constellation.jpg';
-import { useEffect, Suspense, useContext } from "react";
-import Todos from './components/todos/Todos';
-import EditTodo from './components/todos/EditTodo';
+import React, { useEffect, Suspense, useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import LoadingSpinner from './components/UI/LoadingSpinner';
-import NewTodo from './components/todos/NewTodo';
 import { TodoContext } from './components/context/todo-context';
+
+// Dynamic imports
+const Todos = React.lazy(() => import("./components/todos/Todos"));
+const EditTodo = React.lazy(() => import("./components/todos/EditTodo"));
+const NewTodo = React.lazy(() => import("./components/todos/NewTodo"));
 
 const App = () => {
 

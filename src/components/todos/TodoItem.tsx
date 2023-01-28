@@ -39,6 +39,7 @@ const TodoItem = ({id, task, position} : ComponentProps) => {
 
         // show a popup to inform the user that the todo has been deleted
         alert("Todo successfully deleted");
+
     };
 
     return(
@@ -64,4 +65,4 @@ const TodoItem = ({id, task, position} : ComponentProps) => {
 
 }
 
-export default TodoItem;
+export default React.memo(TodoItem);

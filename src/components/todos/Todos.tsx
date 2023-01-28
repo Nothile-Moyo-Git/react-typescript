@@ -4,6 +4,8 @@
  * 
  * @returns list of to do list items (<ul>)
  */
+
+import React from "react";
 import TodoItem from "./TodoItem";
 import './Todos.scss';
 
@@ -30,4 +32,4 @@ const Todos = ({ tasks } : ComponentProps) => {
     );
 };
 
-export default Todos;
+export default React.memo(Todos);

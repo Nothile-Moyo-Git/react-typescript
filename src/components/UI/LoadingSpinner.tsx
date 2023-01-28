@@ -2,12 +2,12 @@
  * Loading spinner component.
  * Is used to make the api request process feel smother and it also attached to a suspense on the main App component
  * 
- * @returns LoadingSpinner : ReactComponent
+ * @returns LoadingSpinner : JSX
  */
 
 import './LoadingSpinner.scss';
 
-const LoadingSpinner : React.FC = () => {
+const LoadingSpinner = () => {
 
     return(
         <div className="loading-spinner">
