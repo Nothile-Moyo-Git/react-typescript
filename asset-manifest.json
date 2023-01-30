@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/react-typescript/static/css/main.66f7989c.css",
-    "main.js": "/react-typescript/static/js/main.3cadd9fd.js",
+    "main.js": "/react-typescript/static/js/main.f536ca25.js",
     "static/css/935.eb2787db.chunk.css": "/react-typescript/static/css/935.eb2787db.chunk.css",
-    "static/js/935.4671c5f7.chunk.js": "/react-typescript/static/js/935.4671c5f7.chunk.js",
+    "static/js/935.b43b98b4.chunk.js": "/react-typescript/static/js/935.b43b98b4.chunk.js",
     "static/css/58.53d55451.chunk.css": "/react-typescript/static/css/58.53d55451.chunk.css",
     "static/js/58.b6fa7f4f.chunk.js": "/react-typescript/static/js/58.b6fa7f4f.chunk.js",
     "static/css/647.e261da58.chunk.css": "/react-typescript/static/css/647.e261da58.chunk.css",
@@ -12,9 +12,9 @@
     "index.html": "/react-typescript/index.html",
     "static/media/burger-menu.svg": "/react-typescript/static/media/burger-menu.938e5cf99767dbb8949abb6ba8cd58fa.svg",
     "main.66f7989c.css.map": "/react-typescript/static/css/main.66f7989c.css.map",
-    "main.3cadd9fd.js.map": "/react-typescript/static/js/main.3cadd9fd.js.map",
+    "main.f536ca25.js.map": "/react-typescript/static/js/main.f536ca25.js.map",
     "935.eb2787db.chunk.css.map": "/react-typescript/static/css/935.eb2787db.chunk.css.map",
-    "935.4671c5f7.chunk.js.map": "/react-typescript/static/js/935.4671c5f7.chunk.js.map",
+    "935.b43b98b4.chunk.js.map": "/react-typescript/static/js/935.b43b98b4.chunk.js.map",
     "58.53d55451.chunk.css.map": "/react-typescript/static/css/58.53d55451.chunk.css.map",
     "58.b6fa7f4f.chunk.js.map": "/react-typescript/static/js/58.b6fa7f4f.chunk.js.map",
     "647.e261da58.chunk.css.map": "/react-typescript/static/css/647.e261da58.chunk.css.map",
@@ -22,6 +22,6 @@
   },
   "entrypoints": [
     "static/css/main.66f7989c.css",
-    "static/js/main.3cadd9fd.js"
+    "static/js/main.f536ca25.js"
   ]
 }
