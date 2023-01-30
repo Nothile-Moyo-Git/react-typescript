@@ -54,7 +54,7 @@ const TodoItem = ({id, task, position} : ComponentProps) => {
             glareBorderRadius={"90"}
             glareColor={"#861657"}
         >
-            <p className="todo-item__task">{task}</p>
+            <p className="todo-item__task" data-testid="test-item-text">{task}</p>
             <div className="todo-item__buttons">
                 <Link to={`edit/${id}`} className="todo-item__button">Edit</Link>
                 <button onClick={deleteTodoHandler} className="todo-item__button">Delete</button>

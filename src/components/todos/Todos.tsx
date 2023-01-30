@@ -5,7 +5,7 @@
  * @returns list of to do list items (<ul>)
  */
 
-import React from "react";
+import React, { ReactNode } from "react";
 import TodoItem from "./TodoItem";
 import './Todos.scss';
 
@@ -14,10 +14,11 @@ interface Todo {
     task : string
 }
 interface ComponentProps {
-    tasks : Todo[] | []
+    tasks : Todo[] | [], 
+    children : ReactNode
 }
 
-const Todos = ({ tasks } : ComponentProps) => {
+const Todos = ({ tasks, children } : ComponentProps) => {
 
     // Delete component handler. We pass this to the child component 
 
