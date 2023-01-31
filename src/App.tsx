@@ -10,7 +10,6 @@
 // impoorts
 import './App.scss';
 import Layout from './components/layout/Layout';
-import NavMenu from './components/header/NavMenu';
 import queryDB from './backend/queryDB';
 import Constellation from './components/assets/constellation.jpg';
 import React, { useEffect, Suspense, useContext } from "react";
@@ -50,8 +49,6 @@ const App = () => {
 
   return (
     <div className="app" id="outer-container" style={{ backgroundImage: `url(${Constellation})`, backgroundSize: `cover`, backgroundRepeat: `repeat`}}>
-
-      <NavMenu/>
 
       <Layout>
 
