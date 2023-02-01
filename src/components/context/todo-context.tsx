@@ -18,6 +18,7 @@ interface Todo {
 // Allowing an explicit type definition for children
 interface ComponentProps {
     children : ReactNode
+    value : Todo[] | []
 }
 
 // We're an index signature here 
@@ -33,7 +34,7 @@ interface Todos {
 
 export const TodoContext = React.createContext<Todos | null>(null);
 
-export const TodosContextProvider = ({ children } : ComponentProps) => {
+export const TodosContextProvider = ({ children, value } : ComponentProps) => {
 
     // Create our todo global state, we set it to type Todos or never[] for empty arrays
     const [todoItems, setTodoItems] = useState<Todo[] | []>([]);

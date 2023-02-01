@@ -17,7 +17,7 @@ import TodosContextProvider from './components/context/todo-context';
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
 root.render(
-  <TodosContextProvider>
+  <TodosContextProvider value={[]}>
     <BrowserRouter basename="/react-typescript">
       <NavMenu/>
       <App/>
