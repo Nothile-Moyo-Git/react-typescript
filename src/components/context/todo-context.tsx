@@ -3,8 +3,12 @@
  * We have the "formatData" method which creates a todo item from the result of our request to the backend
  * This context is shared amongst multiple components in order to prevent too much binding
  * It also means that we re-use less code overall
+ * Union types are frequently to guard against empty responses and initialisation of arrays which has to be empty since the API request hasn't been performed.
  * 
  * We have an interface we use and the type is an array of Todo class instances
+ * 
+ * @returns TodoContext : ReactContext
+ * @returns 
  */
 
 import React, { useState, ReactNode } from "react";
@@ -26,7 +30,7 @@ interface FirebaseResponse{
     [key : string] : string
 }
 
-// 
+// Format for our context. Note: Your value that you pass through the provider will use this interface so it must match
 interface Todos {
     todos : Todo[] | []
     format : (todos : FirebaseResponse) => void
