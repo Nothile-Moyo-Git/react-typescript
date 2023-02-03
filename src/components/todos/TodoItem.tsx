@@ -3,7 +3,7 @@
  * Renders the todo on the page, and handles all the necessary logic required for it.
  * We're using parallax tilt cards which can be found here: https://www.npmjs.com/package/react-parallax-tilt
  * 
- * @returns a list item containing the todo information and handlers for logic (<li>)
+ * @returns TodoItem : PureComponent
  */
 
 import React from 'react';
@@ -43,7 +43,7 @@ const TodoItem = ({id, task, position} : ComponentProps) => {
     };
 
     return(
-        <li >
+        <li>
             <Tilt 
                 className="todo-item"
                 style={{ animationDelay : `${position / 2}s` }}

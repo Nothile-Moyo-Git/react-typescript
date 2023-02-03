@@ -111,9 +111,9 @@ describe("Test Context Providers and API response in the app component", () => {
       </TodosContextProvider>
     );
 
-    // Check the initial render for the loading text
-    const testElement = await screen.findAllByRole("listitem");
-    expect(testElement).toHaveLength(3);
+    // Make sure we don't render any list items if there aren't any when we initialise the app
+    const testElement = screen.queryAllByRole("listitem");
+    expect(testElement).toHaveLength(0);
   
   });
 

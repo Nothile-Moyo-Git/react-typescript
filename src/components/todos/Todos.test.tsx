@@ -1,5 +1,7 @@
 /**
- * Todos test, checks if 
+ * Todos test, checks if the appropriate todo item will render or not based on the value passed through in props
+ * The props passed to Todos is passed from the App component using global state which is tested in the App.test.tsx file
+ * We also check if we render no todos if the list is empty
  */
 
 import Todos from "./Todos";
@@ -9,8 +11,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 describe("Check if the app would render list items if passed through props", () => {
 
-    // Check output of text
-    test("Make sure our text renders", async ()  => {
+    // Make sure we render the text that we pass through props
+    test("Make sure our text renders",()  => {
 
         render( 
             <Router>
@@ -20,13 +22,26 @@ describe("Check if the app would render list items if passed through props", () 
             </Router>
         );
 
-        const element = await screen.findByText(/Implement some unit tests/i);
-
-        expect(element).toBeInTheDocument();
+        const element = screen.getAllByText(/Implement some unit tests/i);
+        expect(element).not.toHaveLength(0);
 
     });
 
-    // 
+    // Render nothing if we receive no props
+    test("Don't render any text if we receive nothing in our props" ,() => {
+
+        render( 
+            <Router>
+                <Todos tasks={[]}>
+                    <TodoItem key="" id="" task="" position={0}/>
+                </Todos> 
+            </Router>
+        );
+
+        const element = screen.queryAllByText(/Implement some unit tests/i);
+        expect(element).toHaveLength(0);
+
+    });
 
 });
 

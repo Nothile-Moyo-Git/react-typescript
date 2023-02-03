@@ -5,10 +5,10 @@
  * 
  * It uses the react-burger-menu package
  * 
- * @returns NavMenu : JSX
+ * @returns NavMenu : PureComponent
  */
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { scaleRotate as Menu } from "react-burger-menu";
 import { NavLink } from "react-router-dom";
 import { GrClose } from "react-icons/gr";
