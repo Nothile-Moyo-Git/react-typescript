@@ -67,13 +67,13 @@ describe("Test Context Providers and API response in the app component", () => {
       </TodosContextProvider>
     );
 
-      // Instead of bypassing the act warning, we're waiting for our component to fully mount and retrieve the API response
-      await waitFor( async () => {
+    // Instead of bypassing the act warning, we're waiting for our component to fully mount and retrieve the API response
+    await waitFor( async () => {
 
-        const testElement = await screen.findAllByText(/Implement some unit tests/i);
-        expect(testElement).not.toHaveLength(0);
-  
-      });
+      const testElement = await screen.findAllByText(/Implement some unit tests/i);
+      expect(testElement).not.toHaveLength(0);
+
+    });
 
   });
 
