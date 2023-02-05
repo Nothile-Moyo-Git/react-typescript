@@ -11,6 +11,7 @@ import queryDB from "../../backend/queryDB";
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { TodoContext } from "../context/todo-context";
+import { BsCloudUpload } from "react-icons/bs";
 
 const NewTodo = () => {
 
@@ -55,7 +56,6 @@ const NewTodo = () => {
 
             todoContextInstance?.format(todos);
 
-            history.push("/");
         }
         
     };
@@ -77,24 +77,39 @@ const NewTodo = () => {
 
 
     return(
-        <form className="new-todo" onSubmit={submitHandler}>
 
-            <label id="taskLabel" htmlFor="task" className="new-todo__label">{isInputValid ? "Add Task*" : "Error: Please enter more than 2 characters" }</label>
-                
-            <input
-                name="task"
-                type="text"
-                value={todoText}
-                onChange={updateInput}
-                placeholder="Please enter the task you need to add to the list..."
-                className={isInputValid ? "new-todo__input" : "new-todo__input new-todo__input--error"}
-                aria-labelledby="taskLabel"
-                aria-required
-            />
+        <section className="new-todo">
 
-            <button className={isInputValid ? "new-todo__submit" : "new-todo__submit new-todo__submit--error"} disabled={!isInputValid}>Submit</button>
+ 
+            { 
+                isInputValid && isSubmitted &&
+                <span className="new-todo__modal" data-testid="new-todo">
+                    <BsCloudUpload/>
+                    Success, Visit the home page to see your new To do Item 
+                </span>
+            }
+  
 
-        </form>
+            <form className="new-todo__form" onSubmit={submitHandler}>
+
+                <label id="taskLabel" htmlFor="task" className="new-todo__label">{isInputValid ? "Add Task*" : "Error: Please enter more than 2 characters" }</label>
+                    
+                <input
+                    name="task"
+                    type="text"
+                    value={todoText}
+                    onChange={updateInput}
+                    placeholder="Please enter the task you need to add to the list..."
+                    className={isInputValid ? "new-todo__input" : "new-todo__input new-todo__input--error"}
+                    aria-labelledby="taskLabel"
+                    aria-required
+                />
+
+                <button className={isInputValid ? "new-todo__submit" : "new-todo__submit new-todo__submit--error"} disabled={!isInputValid}>Submit</button>
+
+            </form>
+
+        </section>
     );
 };
 

@@ -11,6 +11,8 @@ $branding_color_sixteen: #B91372;
 $branding_color_nineteen: #20BF55;
 $branding_color_twenty: #63D471;
 $branding_color_twentyone: #80FF72;
+$branding_color_twentytwo: #199844;
+$branding_color_twentythree: #16853B;
 
 $branding_color_gray: #A9A9A9;
 $branding_color_gray__alt_1: rgba( 255, 255, 255, 0.04 );
@@ -25,14 +27,15 @@ $backdrop_color_three: rgba(20, 22, 32, 0.97);
 // Bpx shadows
 $box_shadow: ( 0px 0px 20px 0px rgba(0,0,0,0.4) );
 $button_shadow: ( 0px 0px 15px 0px rgba(0,0,0,0.2) );
-$box_shadow_strong: ( 0px 0px 20px 0px rgba( 0,0,0,0.6));
-$box_shadow_pink: (0px 0px 10px 2px $branding_color_one);
-$box_shadow_pink_strong: (0px 0px 20px 5px $branding_color_one);
+$box_shadow_strong: ( 0px 0px 20px 0px rgba( 0,0,0,0.6) );
+$box_shadow_pink: ( 0px 0px 10px 2px $branding_color_one );
+$box_shadow_pink_strong: ( 0px 0px 20px 5px $branding_color_one );
+$box_shadow_green: ( 0px 0px 10px 2px $branding_color_nineteen );
 
 
 // Gradients
 $branding_gradient_one: linear-gradient(60deg, $branding_color_one, $branding_color_three, $branding_color_two);
 $branding_gradient_two: linear-gradient(60deg, $branding_color_ten, $branding_color_eleven, $branding_color_twelve);
-$branding_gradient_three: linear-gradient(60deg, $branding_color_nineteen, $branding_color_twenty, $branding_color_twentyone);
+$branding_gradient_three: linear-gradient(60deg, $branding_color_nineteen, $branding_color_twenty, $branding_color_twentytwo);
 $branding_gradient_four: linear-gradient(60deg, $branding_color_gray__alt_1, $branding_color_gray__alt_3, $branding_color_gray__alt_2);
 $branding_gradient_backdrop: linear-gradient(60deg, $backdrop_color_one, $backdrop_color_three, $backdrop_color_two);

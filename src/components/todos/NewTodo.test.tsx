@@ -26,9 +26,11 @@ describe("Test suite in order to test executing a post request on the server",()
             context.json({
                 testTaskID : testTaskText 
             });
-        }),
+        })
+
 
     );
+
 
     // Server handlers
     beforeAll(() => { 
@@ -50,7 +52,7 @@ describe("Test suite in order to test executing a post request on the server",()
     server.close(); 
   }); 
 
-  test("Check the response from our post request and see if we see it" ,() => {
+  test("Check the response from our post request and see if we see it", () => {
 
     
 

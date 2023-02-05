@@ -2,17 +2,15 @@
  * Backdrop component, creates a dark outer background for the component
  * Stays fixed in place for scrolling
  * 
- * @returns Backdrop : JSX
+ * @returns Backdrop : PureComponent
  */
 
 import "./Backdrop.scss";
-import React from "react";
 
-const Backdrop : React.FC = () => {
+const Backdrop = () => {
 
     return(
-        <span aria-hidden="true" className="backdrop">
-        </span>
+        <div aria-hidden="true" className="backdrop"/>
     );
 };
 

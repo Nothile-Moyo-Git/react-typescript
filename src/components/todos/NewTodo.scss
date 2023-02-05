@@ -3,31 +3,66 @@
 .new-todo{
     display: flex;
     flex-direction: column;
-    grid-row-gap: 0.5rem;
-    padding: 1rem;
-    max-width: 40rem;
-    width: calc(100% - 4rem);
-    margin: auto;
-    margin-top: 2rem;
-    animation: fade-in 0.3s linear;
-    position: relative;
-    border-radius: 5px;
-    box-shadow: $box_shadow_pink;
-    overflow: hidden;
 
-    @include backgroundGradientEffect(){
-        background: $branding_gradient_one;
+    &__modal{
+        color: white;
+        overflow: hidden;
+        max-width: 40rem;
+        width: calc(100% - 4rem);
+        padding: 1rem;
+        margin: 1rem auto 0 auto;
+        z-index: 1;
+        position: relative;
+        font-size: 1.25rem;
+        box-shadow: $box_shadow_green;
+        animation: fade-in 0.3s linear;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        grid-column-gap: 0.5rem;
+
+        svg{
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    
+        @include backgroundGradientEffect(){
+            background: $branding_gradient_three;
+        } 
+    }
+
+    &__form{
+        display: flex;
+        flex-direction: column;
+        grid-row-gap: 0.5rem;
+        padding: 1rem;
+        max-width: 40rem;
+        width: calc(100% - 4rem);
+        margin: auto;
+        margin-top: 2rem;
+        animation: fade-in 0.3s linear;
+        position: relative;
+        border-radius: 5px;
+        box-shadow: $box_shadow_pink;
+        overflow: hidden;
+        z-index: 1;
+
+        @include backgroundGradientEffect(){
+            background: $branding_gradient_one;
+        }
     }
 
     &__label{
         color: white;
         font-size: 1.25rem;
-        padding-bottom: 0.25rem;
+        padding-bottom: 0.75rem;
         z-index: 1;
     }
 
     &__input{
-        padding: 0.35rem 0.25rem;
+        padding: 0.35rem 0.5rem;
         border-radius: 4px;
         border: 1px solid white;;
         background: white;
@@ -46,7 +81,7 @@
 
     &__submit{
         width: auto;
-        margin: auto;
+        margin: 0.75rem auto 0 auto;
         background-color: transparent;
         padding: 0.4rem 1.5rem;
         border: none;
