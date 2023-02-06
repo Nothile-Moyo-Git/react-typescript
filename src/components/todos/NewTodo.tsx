@@ -9,14 +9,12 @@
 import "./NewTodo.scss";
 import queryDB from "../../backend/queryDB";
 import React, { useState, useContext } from "react";
-// import { useHistory } from "react-router-dom";
 import { TodoContext } from "../context/todo-context";
 import { BsCloudUpload } from "react-icons/bs";
 
 const NewTodo = () => {
 
     // Creating our history so we can navigate to the tasks page upon successful submission
-    // const history = useHistory();
     const todoContextInstance = useContext(TodoContext);
 
     // declaring states, we need to keep track of the current input and the submission status of the form
@@ -103,9 +101,10 @@ const NewTodo = () => {
                     className={isInputValid ? "new-todo__input" : "new-todo__input new-todo__input--error"}
                     aria-labelledby="taskLabel"
                     aria-required
+                    data-testid="new-todo-input"
                 />
 
-                <button className={isInputValid ? "new-todo__submit" : "new-todo__submit new-todo__submit--error"} disabled={!isInputValid}>Submit</button>
+                <button data-testid="new-todo-button" className={isInputValid ? "new-todo__submit" : "new-todo__submit new-todo__submit--error"} disabled={!isInputValid}>Submit</button>
 
             </form>
 
