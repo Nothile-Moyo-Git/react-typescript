@@ -3,7 +3,7 @@
  * Houses a form which performs a post request to my firebase endpoint
  * It uses form validation and also outputs information on a successful request
  * 
- * @returns NewTodo : JSX Element
+ * @returns NewTodo : PureComponent
  */
 
 import "./NewTodo.scss";
