@@ -77,17 +77,15 @@ const NewTodo = () => {
     return(
 
         <section className="new-todo">
-
  
             { 
                 isInputValid && isSubmitted &&
-                <span className="new-todo__modal" data-testid="new-todo">
+                <span className="new-todo__modal" data-testid="new-todo-modal">
                     <BsCloudUpload/>
                     Success, Visit the home page to see your new To do Item 
                 </span>
             }
   
-
             <form className="new-todo__form" onSubmit={submitHandler}>
 
                 <label id="taskLabel" htmlFor="task" className="new-todo__label">{isInputValid ? "Add Task*" : "Error: Please enter more than 2 characters" }</label>

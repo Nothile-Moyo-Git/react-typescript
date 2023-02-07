@@ -7,9 +7,11 @@
 import { render, screen } from "@testing-library/react";
 import { setupServer } from "msw/lib/node";
 import { BrowserRouter as Router } from 'react-router-dom';
-import { DefaultBodyType, PathParams, ResponseComposition, RestContext, RestRequest, rest } from "msw";
+import { DefaultBodyType, PathParams, ResponseComposition, RestContext, RestRequest, context, rest } from "msw";
 import TodosContextProvider from "../context/todo-context";
+import { fireEvent } from "@testing-library/react";
 import NewTodo from "./NewTodo";
+
 
 // Testing definition
 const endpoint = "https://react-typescript-69b75-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -22,11 +24,25 @@ describe("Test suite in order to test executing a post request on the server",()
     // Create a mock server that intercepts our put post request instead of executing a request directly to firebase
     const server = setupServer(
        
-        rest.post(`${endpoint}${testTaskID}.json`, (request : RestRequest<never, PathParams<string>>, response : ResponseComposition<DefaultBodyType>, context : RestContext) => {
+        // Intercept the form submission event and make the request a success
+        rest.post(`${endpoint}.json`, (request : RestRequest<never, PathParams<string>>, response : ResponseComposition<DefaultBodyType>, context : RestContext) => {
+            
             context.status(200);
+            
             context.json({
                 testTaskID : testTaskText 
             });
+
+        }),
+
+        rest.get(`${endpoint}.json`, (request : RestRequest<never, PathParams<string>>, response : ResponseComposition<DefaultBodyType>, context : RestContext) => {
+            
+            context.status(200);
+            
+            context.json({
+                testTaskID : testTaskText
+            });
+
         })
 
     );
@@ -52,7 +68,7 @@ describe("Test suite in order to test executing a post request on the server",()
     }); 
 
     // Check if out submit button exists and if we can find our input
-    test("Check to see if our success modal appears after a successful upload", () => {
+    test("Reference input, button, and updating the input value to query the backend", () => {
 
         // arrange, render our component so that we can reference the button and submit the form
         render(
@@ -76,8 +92,32 @@ describe("Test suite in order to test executing a post request on the server",()
         // Check if our input is there so we can update it's value here and then submit the updated value to avoid "empty" validation errors
         expect(input).toBeInTheDocument();
 
+        // Update the value of our input and then check if we can see the update
+        fireEvent.change(input, {target: {value: "An unexpected pokemon appears!"}});
+
+        // Make sure we've updated the value in our input. The test value should be something not likely to be uploaded to firebase
+        expect(input).toHaveValue("An unexpected pokemon appears!");
+
     });
 
-    // Check if our 
-    
+    // Once we've tested our basic funcitonality, we now need to check our API functionality
+    test("Perform mock requests to firebase and check if the modal appears", () => {
+
+        // arrange, render our component so that we can reference the button and submit the form
+        render(
+            <TodosContextProvider value={[]}>
+                <Router>
+                    <NewTodo/>
+                </Router>
+            </TodosContextProvider>
+        );
+
+        // arrange, reference our elements
+        const button = screen.getByTestId("new-todo-button");
+        const input = screen.getByTestId("new-todo-input");
+
+        expect(button).toBeInTheDocument();
+
+    });
+
 });
