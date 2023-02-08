@@ -8,9 +8,10 @@
 
 import "./NewTodo.scss";
 import queryDB from "../../backend/queryDB";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, FormEvent } from "react";
 import { TodoContext } from "../context/todo-context";
 import { BsCloudUpload } from "react-icons/bs";
+import { a } from "msw/lib/glossary-de6278a9";
 
 const NewTodo = () => {
 
@@ -28,7 +29,7 @@ const NewTodo = () => {
     }
 
     // Submit form and perform query to backend
-    const submitHandler = async (event : React.SyntheticEvent) => {
+    const submitHandler = async (event : any) => {
         
         event.preventDefault();
 
@@ -50,9 +51,9 @@ const NewTodo = () => {
         if (isValid === true) {
 
             // Submit the new task and retrieve the updated todos and then go back to the home page
-            const todos = await queryDB("POST", todoText);
+            // const todos = await queryDB("POST", todoText);
 
-            todoContextInstance?.format(todos);
+            // todoContextInstance?.format(todos);
 
         }
         
@@ -86,7 +87,7 @@ const NewTodo = () => {
                 </span>
             }
   
-            <form className="new-todo__form" onSubmit={submitHandler}>
+            <form className="new-todo__form" onSubmit={submitHandler} data-testid="new-todo-form">
 
                 <label id="taskLabel" htmlFor="task" className="new-todo__label">{isInputValid ? "Add Task*" : "Error: Please enter more than 2 characters" }</label>
                     
