@@ -29,9 +29,12 @@ describe("Test suite in order to test executing a post request on the server",()
             
             context.status(200);
             
-            context.json({
-                testTaskID : testTaskText 
-            });
+            return response(            
+                context.json({
+                    testTaskID : testTaskText 
+                })
+            );
+
 
         }),
 
@@ -101,7 +104,7 @@ describe("Test suite in order to test executing a post request on the server",()
     });
 
     // Once we've tested our basic funcitonality, we now need to check our API functionality
-    test("Perform mock requests to firebase and check if the modal appears", () => {
+    test("Perform mock requests to firebase and check if the modal appears", async () => {
 
         // arrange, render our component so that we can reference the button and submit the form
         render(
@@ -113,10 +116,30 @@ describe("Test suite in order to test executing a post request on the server",()
         );
 
         // arrange, reference our elements
-        const button = screen.getByTestId("new-todo-button");
-        const input = screen.getByTestId("new-todo-input");
 
+        // Get our form
+        const form = await screen.findByTestId("new-todo-form");
+        expect(form).toBeInTheDocument();
+
+        // Get our button
+        const button = screen.getByTestId("new-todo-button");
         expect(button).toBeInTheDocument();
+
+        // Get our input
+        const input = screen.getByTestId("new-todo-input");
+        expect(input).toHaveValue("");
+
+        // Update the value of our input before we perform a post request
+        fireEvent.change(input, {target: {value: "An unexpected pokemon appears!"}});
+        expect(input).toHaveValue("An unexpected pokemon appears!");
+
+        // Submit our form
+        fireEvent.submit(form, {
+            target: {
+                task : {value : "An unexpected pokemon appears!"}
+            }
+        });
+
 
     });
 
