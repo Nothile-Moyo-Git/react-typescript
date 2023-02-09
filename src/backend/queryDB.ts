@@ -59,10 +59,6 @@ const performRequest = async (queryEndpoint : string, body : string, method: str
         body: body.length === 0 ? undefined : JSON.stringify(body)
     });
 
-    // Output the response object
-    console.log("Outputting the response object below");
-    console.log(response);
-
     // If our request fails, then send an error for it to be checked. Note: it could be the missing .json issue
     if (!response.ok) {
         throw new Error("Error: request failed, please check endpoint");

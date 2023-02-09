@@ -24,8 +24,9 @@
 
     &__input{
         border-radius: 4px;
+        font-size: 1rem;
         border: none;
-        padding: 0.35rem 0.5rem;
+        padding: 0.5rem 0.5rem;
         color: black;
     }
 
@@ -42,6 +43,8 @@
         cursor: pointer;
         filter: contrast(80%);
         transition: $standard_transition;
+        width: max-content;
+        margin: 0.35rem auto 0 auto;
 
         @include state(){
             filter: contrast(120%);

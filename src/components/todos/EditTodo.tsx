@@ -85,7 +85,7 @@ const EditTodo = () => {
     },[todoContextInstance]);
 
     return (
-        <form className="edit-todo" onSubmit={submitFormHandler}>
+        <form className="edit-todo" onSubmit={submitFormHandler} data-testid="edit-todo-form">
             <label id="taskLabel" htmlFor="task" className="edit-todo__label">Edit your task</label>
             <input
                 type="text"
@@ -95,8 +95,9 @@ const EditTodo = () => {
                 aria-labelledby="taskLabel"
                 aria-required
                 className="edit-todo__input"
+                data-testid="edit-todo-input"
             />
-            <button>Update Task</button>
+            <button>Update To do</button>
         </form>
     );
 };

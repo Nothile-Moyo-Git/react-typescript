@@ -1,25 +1,23 @@
 /**
  * New todo test, creates a mock post request to the firebase url
  * Returns a successful response with an updated list of to do items
- * Processes the results of the test
+ * A success modal appears when a todo task has been added which is referenced
  */
 
 import { render, screen } from "@testing-library/react";
 import { setupServer } from "msw/lib/node";
 import { BrowserRouter as Router } from 'react-router-dom';
-import { DefaultBodyType, PathParams, ResponseComposition, RestContext, RestRequest, context, rest } from "msw";
+import { DefaultBodyType, PathParams, ResponseComposition, RestContext, RestRequest, rest } from "msw";
 import TodosContextProvider from "../context/todo-context";
 import { fireEvent } from "@testing-library/react";
 import NewTodo from "./NewTodo";
 
-
 // Testing definition
 const endpoint = "https://react-typescript-69b75-default-rtdb.europe-west1.firebasedatabase.app/";
-const testTaskID = "-NMKtohDWMcesREvi162";
 const testTaskText = "Execute a post request";
 
 // Create a test suite for NewTodo.test.tsx
-describe("Test suite in order to test executing a post request on the server",() => {
+describe("Test suite in order to test executing a post request on the server", () => {
 
     // Create a mock server that intercepts our put post request instead of executing a request directly to firebase
     const server = setupServer(
@@ -140,6 +138,9 @@ describe("Test suite in order to test executing a post request on the server",()
             }
         });
 
+        // Look for our success modal after successfully submitting the form
+        const modal = screen.queryByTestId("new-todo-modal");
+        expect(modal).toBeInTheDocument();
 
     });
 

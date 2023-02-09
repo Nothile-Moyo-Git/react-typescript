@@ -51,9 +51,9 @@ const NewTodo = () => {
         if (isValid === true) {
 
             // Submit the new task and retrieve the updated todos and then go back to the home page
-            // const todos = await queryDB("POST", todoText);
+            const todos = await queryDB("POST", todoText);
 
-            // todoContextInstance?.format(todos);
+            todoContextInstance?.format(todos);
 
         }
         
