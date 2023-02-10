@@ -6,10 +6,11 @@
  */
 
 // Imports
+import * as renderer from "react-test-renderer";
 import { render, screen } from "@testing-library/react";
 import { fireEvent } from "@testing-library/react";
 import { setupServer } from "msw/lib/node";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import TodosContextProvider from "../context/todo-context";
 import { DefaultBodyType, PathParams, ResponseComposition, RestContext, RestRequest, rest } from "msw";
 import EditTodo from "./EditTodo";
@@ -19,16 +20,34 @@ const endpoint = "https://react-typescript-69b75-default-rtdb.europe-west1.fireb
 const testTaskID = "-NMKtohDWMcesREvi162";
 const testTaskText = "Execute a post request";
 
+// Trying render with props in order to get the dynamic url working
+const renderWithProps = (props : any) => {
+
+    const defaultProps = {
+        match : { params : { id: "-NNDjBgaZtKBMDmsO8tu" }}
+    };
+
+};
+
 // Edit todo test suite
 describe("Test the form, put request functionality and re-rendering of the edit to do component", () => {
 
-    test("Check for passing props through to the Edit To Do component", () => {
+    // Create a server to intercept our results from quering a single todo item
+    const server = setupServer(
 
-        // Arrange, render our component to test for the input field
+    );
+
+    test("Check for passing props through to the Edit To Do component", async () => {
+
+        // Arrange, render our component to test for the input field. We're passing context through so we can test this in the input
         render(
-            <TodosContextProvider value={[]}>
-                <Router>
-                    <EditTodo/>
+            <TodosContextProvider value={[
+                { id : "-NMKtohDWMcesREviaHg", task : "Implement some unit tests!" },
+                { id : "-NMtPq9ErK5YMZivV667", task : "Implement performance optimisations!" },
+                { id : "-NNDjBgaZtKBMDmsO8tu", task : "<3" }
+            ]}>
+                <Router initialEntries={["/-NNDjBgaZtKBMDmsO8tu"]}>
+                    <EditTodo/>                                          
                 </Router>
             </TodosContextProvider>
         );
@@ -39,9 +58,13 @@ describe("Test the form, put request functionality and re-rendering of the edit 
         // Check if we have the form
         expect(form).toBeInTheDocument();
 
+        // Get our input
         const input = screen.getByTestId("edit-todo-input");
 
+        // Check if we have an input
         expect(input).toBeInTheDocument();
+
+        console.log(input);
 
     });
 

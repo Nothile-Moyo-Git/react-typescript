@@ -57,7 +57,7 @@ const TodoItem = ({id, task, position} : ComponentProps) => {
             >
                 <p className="todo-item__task" data-testid="test-item-text">{task}</p>
                 <div className="todo-item__buttons">
-                    <Link to={`edit/${id}`} className="todo-item__button">Edit</Link>
+                    <Link to={id} className="todo-item__button">Edit</Link>
                     <button onClick={deleteTodoHandler} className="todo-item__button">Delete</button>
                 </div>
                 

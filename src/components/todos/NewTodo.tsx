@@ -25,7 +25,7 @@ const NewTodo = () => {
 
     // Validate form inputs
     const validateInput = (input : string) => {
-        return(input.length > 2);
+        return(input.length >= 2);
     }
 
     // Submit form and perform query to backend
