@@ -7,26 +7,35 @@
 
 // Imports
 import * as renderer from "react-test-renderer";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { fireEvent } from "@testing-library/react";
 import { setupServer } from "msw/lib/node";
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+import { MemoryRouter, Switch, Route, Router } from 'react-router-dom';
 import TodosContextProvider from "../context/todo-context";
 import { DefaultBodyType, PathParams, ResponseComposition, RestContext, RestRequest, rest } from "msw";
 import EditTodo from "./EditTodo";
+import { createMemoryHistory, MemoryHistory } from "history";
+import React from "react";
 
 // Variables
 const endpoint = "https://react-typescript-69b75-default-rtdb.europe-west1.firebasedatabase.app/";
 const testTaskID = "-NMKtohDWMcesREvi162";
 const testTaskText = "Execute a post request";
 
-// Trying render with props in order to get the dynamic url working
-const renderWithProps = (props : any) => {
+interface RenderWithRouterProps {
+    route ?: string,
+    history ?: MemoryHistory
+};
 
-    const defaultProps = {
-        match : { params : { id: "-NNDjBgaZtKBMDmsO8tu" }}
+const renderWithRouter = (    
+        ui : React.ReactNode, 
+        { route = "/-NNDjBgaZtKBMDmsO8tu", history = createMemoryHistory({ initialEntries: [route] }) } : RenderWithRouterProps
+    ) => {
+
+    return{
+        ...render(<Router history={history}>{ui}</Router>),
+        history
     };
-
 };
 
 // Edit todo test suite
@@ -46,9 +55,13 @@ describe("Test the form, put request functionality and re-rendering of the edit 
                 { id : "-NMtPq9ErK5YMZivV667", task : "Implement performance optimisations!" },
                 { id : "-NNDjBgaZtKBMDmsO8tu", task : "<3" }
             ]}>
-                <Router initialEntries={["/-NNDjBgaZtKBMDmsO8tu"]}>
-                    <EditTodo/>                                          
-                </Router>
+                <MemoryRouter initialEntries={["/-NNDjBgaZtKBMDmsO8tu"]}>
+                    <Switch>
+                        <Route path="/-NNDjBgaZtKBMDmsO8tu">
+                            <EditTodo/>
+                        </Route>  
+                    </Switch>                                       
+                </MemoryRouter>
             </TodosContextProvider>
         );
 
@@ -64,7 +77,30 @@ describe("Test the form, put request functionality and re-rendering of the edit 
         // Check if we have an input
         expect(input).toBeInTheDocument();
 
-        console.log(input);
+    });
+    
+    // Test a dynamic url with react-test-renderer
+    test("Dynamic URL's will work with the Edit Todo component", async () => {
+
+        renderWithRouter(
+            <TodosContextProvider value={[
+                { id : "-NMKtohDWMcesREviaHg", task : "Implement some unit tests!" },
+                { id : "-NMtPq9ErK5YMZivV667", task : "Implement performance optimisations!" },
+                { id : "-NNDjBgaZtKBMDmsO8tu", task : "<3" }
+            ]}>
+                <Switch>
+                    <EditTodo/>
+                </Switch>
+            </TodosContextProvider>,
+            {}
+        );
+
+        // Get our input
+        const input = screen.getByTestId("edit-todo-input");
+
+        // Check if we have an input
+        expect(input).toBeInTheDocument();
+
 
     });
 
