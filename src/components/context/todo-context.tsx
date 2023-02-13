@@ -41,7 +41,7 @@ export const TodoContext = React.createContext<Todos | null>(null);
 export const TodosContextProvider = ({ children, value } : ComponentProps) => {
 
     // Create our todo global state, we set it to type Todos or never[] for empty arrays
-    const [todoItems, setTodoItems] = useState<Todo[] | []>([]);
+    const [todoItems, setTodoItems] = useState<Todo[] | []>(value);
 
     // Since our firebase reponse object doesn't use an id as a property but as an identifier, we do this to extract it into an id we can reference.
     // We also use this for generating keys in lists

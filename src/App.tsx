@@ -47,8 +47,6 @@ const App = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
-  console.log(todos);
-
   return (
     <div className="app" id="outer-container" style={{ backgroundImage: `url(${Constellation})`, backgroundSize: `cover`, backgroundRepeat: `repeat`}}>
 

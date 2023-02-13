@@ -15,28 +15,11 @@ import TodosContextProvider from "../context/todo-context";
 import { DefaultBodyType, PathParams, ResponseComposition, RestContext, RestRequest, rest } from "msw";
 import EditTodo from "./EditTodo";
 import { createMemoryHistory, MemoryHistory } from "history";
-import React from "react";
 
 // Variables
 const endpoint = "https://react-typescript-69b75-default-rtdb.europe-west1.firebasedatabase.app/";
 const testTaskID = "-NMKtohDWMcesREvi162";
 const testTaskText = "Execute a post request";
-
-interface RenderWithRouterProps {
-    route ?: string,
-    history ?: MemoryHistory
-};
-
-const renderWithRouter = (    
-        ui : React.ReactNode, 
-        { route = "/-NNDjBgaZtKBMDmsO8tu", history = createMemoryHistory({ initialEntries: [route] }) } : RenderWithRouterProps
-    ) => {
-
-    return{
-        ...render(<Router history={history}>{ui}</Router>),
-        history
-    };
-};
 
 // Edit todo test suite
 describe("Test the form, put request functionality and re-rendering of the edit to do component", () => {
@@ -50,11 +33,7 @@ describe("Test the form, put request functionality and re-rendering of the edit 
 
         // Arrange, render our component to test for the input field. We're passing context through so we can test this in the input
         render(
-            <TodosContextProvider value={[
-                { id : "-NMKtohDWMcesREviaHg", task : "Implement some unit tests!" },
-                { id : "-NMtPq9ErK5YMZivV667", task : "Implement performance optimisations!" },
-                { id : "-NNDjBgaZtKBMDmsO8tu", task : "<3" }
-            ]}>
+            <TodosContextProvider value={[]}>
                 <MemoryRouter initialEntries={["/-NNDjBgaZtKBMDmsO8tu"]}>
                     <Switch>
                         <Route path="/-NNDjBgaZtKBMDmsO8tu">
@@ -82,17 +61,23 @@ describe("Test the form, put request functionality and re-rendering of the edit 
     // Test a dynamic url with react-test-renderer
     test("Dynamic URL's will work with the Edit Todo component", async () => {
 
-        renderWithRouter(
+        // Render our component with a context provider. We do this to pass mock values to the component
+        // Afterwards, we use a MemoryRouter to route match the path we'd pass through 
+        // Seems like you'll need to define your Route the same way you do in your main App component, don't use hard coded routes for dynamic params
+        // From here, we wait until the EditTodo component has finished mounting and re-rendering
+        // Then we check to see if the text value has gone into the input
+        render(
             <TodosContextProvider value={[
                 { id : "-NMKtohDWMcesREviaHg", task : "Implement some unit tests!" },
                 { id : "-NMtPq9ErK5YMZivV667", task : "Implement performance optimisations!" },
                 { id : "-NNDjBgaZtKBMDmsO8tu", task : "<3" }
             ]}>
-                <Switch>
-                    <EditTodo/>
-                </Switch>
-            </TodosContextProvider>,
-            {}
+               <MemoryRouter initialEntries={["/-NNDjBgaZtKBMDmsO8tu"]}>
+                    <Route path="/:id">
+                        <EditTodo/>
+                    </Route>
+               </MemoryRouter>
+            </TodosContextProvider>
         );
 
         // Get our input
@@ -101,7 +86,12 @@ describe("Test the form, put request functionality and re-rendering of the edit 
         // Check if we have an input
         expect(input).toBeInTheDocument();
 
+        // Check if our task value is not being rendered in the input field
+        const testElement = screen.queryAllByDisplayValue(/<3/i);
 
+        // If the <3 value is present, the test will pass
+        expect(testElement).not.toHaveLength(0);
+      
     });
 
 });
