@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/react-typescript/static/css/main.b9be70d0.css",
-    "main.js": "/react-typescript/static/js/main.3dec455b.js",
+    "main.js": "/react-typescript/static/js/main.08010fd6.js",
     "static/css/935.eb2787db.chunk.css": "/react-typescript/static/css/935.eb2787db.chunk.css",
     "static/js/935.762d4f8c.chunk.js": "/react-typescript/static/js/935.762d4f8c.chunk.js",
-    "static/css/58.82be94b7.chunk.css": "/react-typescript/static/css/58.82be94b7.chunk.css",
-    "static/js/58.66bc6243.chunk.js": "/react-typescript/static/js/58.66bc6243.chunk.js",
+    "static/css/58.ece254a3.chunk.css": "/react-typescript/static/css/58.ece254a3.chunk.css",
+    "static/js/58.e7605d71.chunk.js": "/react-typescript/static/js/58.e7605d71.chunk.js",
     "static/css/647.1da2a46a.chunk.css": "/react-typescript/static/css/647.1da2a46a.chunk.css",
     "static/js/647.9f80c006.chunk.js": "/react-typescript/static/js/647.9f80c006.chunk.js",
     "static/media/constellation.jpg": "/react-typescript/static/media/constellation.e8c859c0fc051241d281.jpg",
     "index.html": "/react-typescript/index.html",
     "static/media/burger-menu.svg": "/react-typescript/static/media/burger-menu.938e5cf99767dbb8949abb6ba8cd58fa.svg",
     "main.b9be70d0.css.map": "/react-typescript/static/css/main.b9be70d0.css.map",
-    "main.3dec455b.js.map": "/react-typescript/static/js/main.3dec455b.js.map",
+    "main.08010fd6.js.map": "/react-typescript/static/js/main.08010fd6.js.map",
     "935.eb2787db.chunk.css.map": "/react-typescript/static/css/935.eb2787db.chunk.css.map",
     "935.762d4f8c.chunk.js.map": "/react-typescript/static/js/935.762d4f8c.chunk.js.map",
-    "58.82be94b7.chunk.css.map": "/react-typescript/static/css/58.82be94b7.chunk.css.map",
-    "58.66bc6243.chunk.js.map": "/react-typescript/static/js/58.66bc6243.chunk.js.map",
+    "58.ece254a3.chunk.css.map": "/react-typescript/static/css/58.ece254a3.chunk.css.map",
+    "58.e7605d71.chunk.js.map": "/react-typescript/static/js/58.e7605d71.chunk.js.map",
     "647.1da2a46a.chunk.css.map": "/react-typescript/static/css/647.1da2a46a.chunk.css.map",
     "647.9f80c006.chunk.js.map": "/react-typescript/static/js/647.9f80c006.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b9be70d0.css",
-    "static/js/main.3dec455b.js"
+    "static/js/main.08010fd6.js"
   ]
 }
