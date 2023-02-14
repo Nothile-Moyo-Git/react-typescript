@@ -6,20 +6,18 @@
  */
 
 // Imports
-import * as renderer from "react-test-renderer";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { fireEvent } from "@testing-library/react";
 import { setupServer } from "msw/lib/node";
-import { MemoryRouter, Switch, Route, Router } from 'react-router-dom';
+import { MemoryRouter, Route } from 'react-router-dom';
 import TodosContextProvider from "../context/todo-context";
 import { DefaultBodyType, PathParams, ResponseComposition, RestContext, RestRequest, rest } from "msw";
 import EditTodo from "./EditTodo";
-import { createMemoryHistory, MemoryHistory } from "history";
 
 // Variables
 const endpoint = "https://react-typescript-69b75-default-rtdb.europe-west1.firebasedatabase.app/";
-const testTaskID = "-NMKtohDWMcesREvi162";
-const testTaskText = "Execute a post request";
+const testTaskID = "-NNDjBgaZtKBMDmsO8tu";
+const testTaskText = "Execute a put request";
 
 // Edit todo test suite
 describe("Test the form, put request functionality and re-rendering of the edit to do component", () => {
@@ -27,7 +25,57 @@ describe("Test the form, put request functionality and re-rendering of the edit 
     // Create a server to intercept our results from quering a single todo item
     const server = setupServer(
 
+        // Intercept the PUT request so we don't query firebase and instead post a successful response
+        rest.put(`https://-nndjbgaztkbmdmso8tu.json/`, (request : RestRequest<never, PathParams<string>>, response : ResponseComposition<DefaultBodyType>, context : RestContext) => {
+
+            context.status(200);
+
+            return response(
+                context.json({testTaskID : testTaskText}),
+            );
+
+        }),
+
+        rest.post(`https://-nndjbgaztkbmdmso8tu.json/`, (request : RestRequest<never, PathParams<string>>, response : ResponseComposition<DefaultBodyType>, context : RestContext) => {
+
+        context.status(200);
+
+        return response(
+            context.json({testTaskID : testTaskText}),
+        );
+
+    }),
+
+        // Intercept our get request so we can reliably get the results of our mock request
+        rest.get(`${endpoint}.json`, (request : RestRequest<never, PathParams<string>>, response : ResponseComposition<DefaultBodyType>, context : RestContext) => {
+
+            context.json({
+                testTaskID : testTaskText
+            });
+
+        }),
+
     );
+
+    // Server handlers
+    beforeAll(() => { 
+
+        // Establish requests interception layer before all tests.
+        server.listen(); 
+    });
+
+    afterEach(() => { 
+
+        // Clean up after all tests are done, preventing this
+        // interception layer from affecting irrelevant tests.
+        server.resetHandlers(); 
+    });
+
+    afterAll(() => { 
+        
+        // Close server and deallocate memory to reduce load on the PC
+        server.close(); 
+    });
 
     test("Check for passing props through to the Edit To Do component", async () => {
 
@@ -35,11 +83,9 @@ describe("Test the form, put request functionality and re-rendering of the edit 
         render(
             <TodosContextProvider value={[]}>
                 <MemoryRouter initialEntries={["/-NNDjBgaZtKBMDmsO8tu"]}>
-                    <Switch>
-                        <Route path="/-NNDjBgaZtKBMDmsO8tu">
-                            <EditTodo/>
-                        </Route>  
-                    </Switch>                                       
+                    <Route path="/:id">
+                        <EditTodo/>
+                    </Route>                                        
                 </MemoryRouter>
             </TodosContextProvider>
         );
@@ -92,6 +138,49 @@ describe("Test the form, put request functionality and re-rendering of the edit 
         // If the <3 value is present, the test will pass
         expect(testElement).not.toHaveLength(0);
       
+    });
+
+    // Test updating the input once we have our dynamic value
+    test("Fire an event to update the input value and then perform a PUT request successfully", async () => {
+
+        // Render our component with the <3 text inside it like done above
+        render(
+            <TodosContextProvider value={[
+                { id : "-NMKtohDWMcesREviaHg", task : "Implement some unit tests!" },
+                { id : "-NMtPq9ErK5YMZivV667", task : "Implement performance optimisations!" },
+                { id : "-NNDjBgaZtKBMDmsO8tu", task : "<3" }
+            ]}>
+               <MemoryRouter initialEntries={["/-NNDjBgaZtKBMDmsO8tu"]}>
+                    <Route path="/:id">
+                        <EditTodo/>
+                    </Route>
+               </MemoryRouter>
+            </TodosContextProvider>
+        );
+
+        // Get our input
+        const input = screen.getByTestId("edit-todo-input");
+
+        // Check if we have an input
+        expect(input).toBeInTheDocument();
+
+        // Update our value and then to see if we can view our update
+        fireEvent.change(input, { target:{ value: "Node.js is cool" }});
+
+        // Check if the text has successfully changed
+        expect(input).toHaveDisplayValue(/Node.js is cool/i);
+
+        // Get our form so we can submit the new text and intercept the request 
+        const form = screen.getByTestId("edit-todo-form");
+        fireEvent.submit(form, 
+            { target: {
+                task : {}
+                },
+            }
+        );
+
+
+
     });
 
 });

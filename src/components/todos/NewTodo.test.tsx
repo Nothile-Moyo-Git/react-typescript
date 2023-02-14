@@ -31,11 +31,11 @@ describe("Test suite in order to test executing a post request on the server", (
                 context.json({
                     testTaskID : testTaskText 
                 })
-            );
-
+            ); 
 
         }),
 
+        // Return a successful response for a get request
         rest.get(`${endpoint}.json`, (request : RestRequest<never, PathParams<string>>, response : ResponseComposition<DefaultBodyType>, context : RestContext) => {
             
             context.status(200);
