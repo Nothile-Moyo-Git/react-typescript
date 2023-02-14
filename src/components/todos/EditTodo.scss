@@ -1,21 +1,83 @@
 @import "../../styles/Shared.scss";
 
 .edit-todo{
-    animation: fade-in 0.3s linear;
     display: flex;
     flex-direction: column;
-    width: calc(100% - 4rem);
-    grid-row-gap: 0.75rem;
-    max-width: 40rem;
-    margin: 2rem auto;
-    padding: 1rem;
-    overflow: hidden;
-    position: relative;
-    box-shadow: $box_shadow_pink;
 
-    @include backgroundGradientEffect(){
-        background: $branding_gradient_one;
+    &__modal{
+        color: white;
+        overflow: hidden;
+        max-width: 40rem;
+        width: calc(100% - 4rem);
+        padding: 1rem;
+        margin: 1rem auto 0 auto;
+        z-index: 1;
+        position: relative;
+        font-size: 1.25rem;
+        box-shadow: $box_shadow_green;
+        animation: fade-in 0.3s linear;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        grid-column-gap: 0.5rem;
+
+        svg{
+            width: 1.5rem;
+            height: 1.5rem;
+            flex-shrink: 0;
+        }
+    
+        @include backgroundGradientEffect(){
+            background: $branding_gradient_three;
+        } 
     }
+
+    &__form{
+        animation: fade-in 0.3s linear;
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 4rem);
+        grid-row-gap: 0.75rem;
+        max-width: 40rem;
+        margin: 2rem auto;
+        padding: 1rem;
+        overflow: hidden;
+        position: relative;
+        box-shadow: $box_shadow_pink;
+        border-radius: 5px;
+    
+        @include backgroundGradientEffect(){
+            background: $branding_gradient_one;
+        }
+
+        button{
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border: none;
+            padding: 0.4rem 1.5rem;
+            border-radius: 4px;
+            background: transparent;
+            font-size: 1.2rem;
+            box-shadow: $box_shadow;
+            cursor: pointer;
+            filter: contrast(80%);
+            transition: $standard_transition;
+            width: max-content;
+            margin: 0.35rem auto 0 auto;
+    
+            @include state(){
+                filter: contrast(120%);
+            }
+    
+            @include backgroundGradientEffect(){
+                background: $branding_gradient_two;
+            }
+        }
+    }
+
 
     &__label{
         margin-bottom: 0.25rem;
@@ -30,28 +92,4 @@
         color: black;
     }
 
-    button{
-        position: relative;
-        z-index: 1;
-        overflow: hidden;
-        border: none;
-        padding: 0.4rem 1.5rem;
-        border-radius: 4px;
-        background: transparent;
-        font-size: 1.2rem;
-        box-shadow: $box_shadow;
-        cursor: pointer;
-        filter: contrast(80%);
-        transition: $standard_transition;
-        width: max-content;
-        margin: 0.35rem auto 0 auto;
-
-        @include state(){
-            filter: contrast(120%);
-        }
-
-        @include backgroundGradientEffect(){
-            background: $branding_gradient_two;
-        }
-    }
 }

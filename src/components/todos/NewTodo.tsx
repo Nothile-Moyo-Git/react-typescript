@@ -8,10 +8,9 @@
 
 import "./NewTodo.scss";
 import queryDB from "../../backend/queryDB";
-import React, { useState, useContext, FormEvent } from "react";
+import React, { useState, useContext } from "react";
 import { TodoContext } from "../context/todo-context";
 import { BsCloudUpload } from "react-icons/bs";
-import { a } from "msw/lib/glossary-de6278a9";
 
 const NewTodo = () => {
 

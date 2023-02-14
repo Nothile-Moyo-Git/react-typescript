@@ -7,12 +7,13 @@
  * @returns EditTodo : JSX
 */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './EditTodo.scss';
 import { useParams } from "react-router-dom";
 import { TodoContext } from '../context/todo-context';
 import queryDB from "../../backend/queryDB";
+import { BsCloudUpload } from "react-icons/bs";
 
 interface ParamTypes {
     id : string
@@ -24,6 +25,8 @@ interface Todo{
 }
 
 const EditTodo = () => {
+
+    const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
     // Create an instance of the history object 
     const history = useHistory();
@@ -45,7 +48,6 @@ const EditTodo = () => {
         return task.id === id;
     });
 
-    // We're using taskRef here instead of using state to reduce the performance impact
     const [task, setTask] = React.useState<string>("");
 
     // Upodate our input string
@@ -67,15 +69,15 @@ const EditTodo = () => {
         // Update the list of our todo items
         todoContextInstance?.format(response);
 
-        alert("Success! Entry edited");
+        // Set is submitted to true so we show our modal
+        setIsSubmitted(true);
 
         // Redirect to the home page.
-        history.push("/");
+        console.log("Success");
 
     };
  
     useEffect(() => {
-
 
         if ( currentTask && currentTask.length > 0 ) {
             setTask(currentTask[0].task);
@@ -85,20 +87,32 @@ const EditTodo = () => {
     },[todoContextInstance]);
 
     return (
-        <form className="edit-todo" onSubmit={submitFormHandler} data-testid="edit-todo-form">
-            <label id="taskLabel" htmlFor="task" className="edit-todo__label">Edit your task</label>
-            <input
-                type="text"
-                name="task"
-                value={task}
-                onChange={updateTaskHandler}
-                aria-labelledby="taskLabel"
-                aria-required
-                className="edit-todo__input"
-                data-testid="edit-todo-input"
-            />
-            <button>Update To do</button>
-        </form>
+        <section className="edit-todo">
+
+            {
+                isSubmitted &&
+                <span className="edit-todo__modal" data-testid="edit-todo-modal">
+                    <BsCloudUpload/>
+                    Success, Go to the home page to view your changes!
+                </span>
+            }
+
+            <form className="edit-todo__form" onSubmit={submitFormHandler} data-testid="edit-todo-form">
+                <label id="taskLabel" htmlFor="task" className="edit-todo__label">Edit your task</label>
+                <input
+                    type="text"
+                    name="task"
+                    value={task}
+                    onChange={updateTaskHandler}
+                    aria-labelledby="taskLabel"
+                    aria-required
+                    className="edit-todo__input"
+                    data-testid="edit-todo-input"
+                />
+                <button>Update To do</button>
+            </form>
+
+        </section>
     );
 };
 

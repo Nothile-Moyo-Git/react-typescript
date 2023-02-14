@@ -6,7 +6,7 @@
  */
 
 // Imports
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { fireEvent } from "@testing-library/react";
 import { setupServer } from "msw/lib/node";
 import { MemoryRouter, Route } from 'react-router-dom';
@@ -25,33 +25,25 @@ describe("Test the form, put request functionality and re-rendering of the edit 
     // Create a server to intercept our results from quering a single todo item
     const server = setupServer(
 
+        // Intercept our get request so we can reliably get the results of our mock request
+        rest.get(`${endpoint}.json`, (request : RestRequest<never, PathParams<string>>, response : ResponseComposition<DefaultBodyType>, context : RestContext) => {
+
+            context.status(200);
+
+            return response(
+                context.json({  testTaskID : testTaskText})
+            );
+
+        }),
+
         // Intercept the PUT request so we don't query firebase and instead post a successful response
-        rest.put(`https://-nndjbgaztkbmdmso8tu.json/`, (request : RestRequest<never, PathParams<string>>, response : ResponseComposition<DefaultBodyType>, context : RestContext) => {
+        rest.put(`${endpoint}${testTaskID}.json`, (request : RestRequest<never, PathParams<string>>, response : ResponseComposition<DefaultBodyType>, context : RestContext) => {
 
             context.status(200);
 
             return response(
                 context.json({testTaskID : testTaskText}),
             );
-
-        }),
-
-        rest.post(`https://-nndjbgaztkbmdmso8tu.json/`, (request : RestRequest<never, PathParams<string>>, response : ResponseComposition<DefaultBodyType>, context : RestContext) => {
-
-        context.status(200);
-
-        return response(
-            context.json({testTaskID : testTaskText}),
-        );
-
-    }),
-
-        // Intercept our get request so we can reliably get the results of our mock request
-        rest.get(`${endpoint}.json`, (request : RestRequest<never, PathParams<string>>, response : ResponseComposition<DefaultBodyType>, context : RestContext) => {
-
-            context.json({
-                testTaskID : testTaskText
-            });
 
         }),
 
@@ -172,14 +164,22 @@ describe("Test the form, put request functionality and re-rendering of the edit 
 
         // Get our form so we can submit the new text and intercept the request 
         const form = screen.getByTestId("edit-todo-form");
-        fireEvent.submit(form, 
-            { target: {
-                task : {}
-                },
-            }
-        );
 
+        expect(form).toBeInTheDocument();
 
+        fireEvent.submit(form, { 
+            target: {
+                task : { value : "<3!" }
+            },
+        });
+
+        // Look for our success modal after successfully submitting the form
+        // We use a waitFor so that we can tell whether the component has caused a re-render or not
+        // Waitfor forces the DOM to wait until all promises are resolved
+        await ( waitFor( () => {
+            const modal = screen.queryAllByTestId("edit-todo-modal");
+            expect(modal).not.toHaveLength(0);          
+        }));
 
     });
 

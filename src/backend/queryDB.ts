@@ -20,6 +20,7 @@ let result : any;
 // Query DB wrapper
 const queryDB = async (method : string, body : string = "", todoId : string = "") => {
 
+
     // Pass the correct arguments based on current method
     switch (method){
 
@@ -32,11 +33,11 @@ const queryDB = async (method : string, body : string = "", todoId : string = ""
             break;
 
         case "PUT":
-            result = await performRequest(`${endpoint}/${todoId}.json`, body, method);
+            result = await performRequest(`${endpoint}${todoId}.json`, body, method);
             break;
 
         case "DELETE": 
-            result = await performRequest(`${endpoint}/${todoId}.json`, body, method);
+            result = await performRequest(`${endpoint}${todoId}.json`, body, method);
             break;
         default:
             throw new Error("Error: invalid method, try one of these: POST, GET, PUT, DELETE");
