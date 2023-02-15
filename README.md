@@ -1,46 +1,78 @@
-# Getting Started with Create React App
+# Testing Todo List App :)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## This Application is a todo list built in React.js, Node.js, TypeScript, Jest, Firebase, React-Testing-Library, MSW, Github actions & SCSS (BEM).
 
-## Available Scripts
+## *Welcome :). I decided to create this Project in order to learn testing and TypeScript usage with React.js and the cloud*
+## *This App has basic CRUD functionality, but contains unit & integration tests with mock requests, mock responses& mock servers*
+## *It also contains powerful features such as dynamic imports, memoization, usage of the GPU when performing CSS, optimal wrapped queries, bundling, CICD and deployments*
 
-In the project directory, you can run:
+### Installation & Deployment
 
-### `npm start`
+Due to the size of this project, [Trunk based development](https://trunkbaseddevelopment.com/) has been used here.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To use the app, clone the repo and create a new branch called `develop` if it doesn't exist already.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Once complete, open the terminal, and execute `npm run install` in your terminal. 
+Once this concludes, run `npm audit fix`.
+*Note: `npm audit fix` fixes all easily fixed dependency problems you may encounter. However, you should never use --force even if there are issues with npm install*.
 
-### `npm test`
+Now to start a local server and render the app in your browser, execute `npm run start` and it should load in your browser!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+That's the hard part over with :).
 
-### `npm run build`
+To run your test, create a new terminal and you'll have access to two separate commands
+```
+npm test <your_test_file> (This command tests an individual test file)
+npm run test (This command tests all files)
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This app uses Github Pages as it's production environment. So when your work is complete, merge `develop` into `master` and push your code up.
+Once that's done, run `npm run deploy` in the terminal. This creates a build and deploys it for you. It will also destroy the build on your local machine once it's complete
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+*Note: Please ensure that your build works before running this. You should have no issues in your terminal and your build should succeed*
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Technologies used
+This app uses React.js with TypeScript. We use TypeScript here as it significantly reduces bugs that can be found in the build file, even if the writing process takes longer. It creates a safer project.
 
-### `npm run eject`
+We use React as we need a JavaScript Framework or library which runs client side.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+We use SCSS with BEM because the BEM methodology reduces scoping issues, and SCSS allows me to execute complex CSS. Furthermore, the styling is optmized to use more of the GPU and not the CPU by use of transforms instead of re-flows, pseudo elements and will-change
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+For testing, we use React-Testing-Library to gain access to the virtual DOM, Jest in order to mock events, and Mock Service Worker in order to mock API request. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+For the backend, we use Firebase as it has a simple API to interact with, but something far more complex if we require features like authentication.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Further technologies include packages such as `react-burger-menu` and `react-parallax-tilt` for cool UI effects.
 
-## Learn More
+**NOTE: Credit to all authors who are creators of React-icons**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### App layout
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The index file contains BrowserRouter and our ContextProvider components which we wrap around the app. We also place the react-burger-menu icon here because it causes unnecessary errors with test. You can find it here "./src/index.tsx".
+
+The App component dynamically loads child components and handles routing. It also performs a get request to fetch all the todo items when the app initially renders. This can be found in "./src/App.tsx"
+
+It has a test file which covers mocking the get request and seeing the list items render once the request is complete.
+
+The backend folder contains the "queryDB" file which handles all API request to Firebase. All queries in components are performed using this file and it works with tests too!
+
+The @types folder manages filestypes and allows them to be bundled in our build. 
+
+The 404 folder contains the 404 page. 
+
+The header, context, and layout folders all work as expected.
+
+The components folder contains the CRUD functionality for todo items. It also contains thorough tests. Since each request is managed through queryDB, most of these components either interact with global state or queryDB. 
+
+Tests for these components include: Testing props, finding input elements, updating inputs, submitting forms, handling re-renders, mocking requests and responses etc...
+
+### Overall thoughts
+
+It was definitely a tough app to build. Although the functionality was simple, I wanted to write it at a high level. Each component is documented, functions are commented. All efforts have been taken to optimize the performance of the app.
+
+I found it really interesting how by having explicit types, it makes it easier to manage dataflow down the road and there's far less ambiguity in the IDE.
+But there are also significantly ( if any ) issues occuring with data types not aligning which would occur in JavaScript.
+
+The styling was really really fun and I love to do nice colors and fancy gradients :)
+
+It was worth it! and now I look forward to exploring Node.js in further depth.

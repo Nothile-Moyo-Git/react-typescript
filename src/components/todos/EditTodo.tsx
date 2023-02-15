@@ -28,9 +28,6 @@ const EditTodo = () => {
 
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
-    // Create an instance of the history object 
-    const history = useHistory();
-
     // Get the slug from the URL
     const slug = useParams<ParamTypes>();
 
@@ -71,9 +68,6 @@ const EditTodo = () => {
 
         // Set is submitted to true so we show our modal
         setIsSubmitted(true);
-
-        // Redirect to the home page.
-        console.log("Success");
 
     };
  
