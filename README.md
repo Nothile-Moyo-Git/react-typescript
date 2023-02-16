@@ -1,4 +1,5 @@
 # Testing Todo List App :)
+# [View Live App](https://nothile-moyo-git.github.io/react-typescript/)
 
 ## This Application is a todo list built in React.js, Node.js, TypeScript, Jest, Firebase, React-Testing-Library, MSW, Github actions & SCSS (BEM).
 
@@ -76,3 +77,7 @@ But there are also significantly ( if any ) issues occuring with data types not 
 The styling was really really fun and I love to do nice colors and fancy gradients :)
 
 It was worth it! and now I look forward to exploring Node.js in further depth.
+
+You can view a preview of the app below :)
+
+![image](https://user-images.githubusercontent.com/15236959/219503519-6aca51b4-113f-4248-b412-381f0aaa9c88.png)
