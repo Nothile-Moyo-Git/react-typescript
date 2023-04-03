@@ -9,6 +9,7 @@ import './Layout.scss';
 import React, { ReactNode } from "react";
 import Header from "../header/Header";
 import Backdrop from './Backdrop';
+import Bubbles from './Bubbles';
 
 interface ComponentProps {
     children: ReactNode;
@@ -20,6 +21,7 @@ const Layout = ({ children } : ComponentProps) => {
         <main className="layout" id="page-wrap">
             <Header/>
             <Backdrop/>
+            <Bubbles/>
             <section className="layout__content">
                 {children}
             </section>

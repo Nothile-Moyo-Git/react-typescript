@@ -4,11 +4,12 @@
  * We use the id of the task to represent the id key in the database
  * We receive the relevant props from Todos
  * 
+ * @method updateTaskHandler (event : React.ChangeEvent<{ value : string }>) => void
+ * @method submitFormHandler async (event : FormEvent) => void
  * @returns EditTodo : JSX
 */
 
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import './EditTodo.scss';
 import { useParams } from "react-router-dom";
 import { TodoContext } from '../context/todo-context';
