@@ -6,11 +6,14 @@
  */
 
 import "./Backdrop.scss";
+import Bubbles from "./Bubbles";
 
 const Backdrop = () => {
 
     return(
-        <div aria-hidden="true" className="backdrop"/>
+        <div aria-hidden="true" className="backdrop">
+            <Bubbles/>
+        </div>
     );
 };
 

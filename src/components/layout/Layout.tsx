@@ -21,7 +21,6 @@ const Layout = ({ children } : ComponentProps) => {
         <main className="layout" id="page-wrap">
             <Header/>
             <Backdrop/>
-            <Bubbles/>
             <section className="layout__content">
                 {children}
             </section>
