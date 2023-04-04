@@ -53,7 +53,7 @@ const TodoItem = ({id, task, position} : ComponentProps) => {
                 glarePosition="all"
                 glareMaxOpacity={0.8}
                 glareBorderRadius={"90"}
-                glareColor={"#861657"}
+                glareColor={"#B91372"}
             >
                 <p className="todo-item__task" data-testid="test-item-text">{task}</p>
                 <div className="todo-item__buttons">
