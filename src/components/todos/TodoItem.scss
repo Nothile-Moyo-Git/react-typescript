@@ -23,6 +23,8 @@
 
     &__task{
         text-align: center;
+        width: 100%;
+        overflow-wrap: break-word;
     }
 
     &__buttons{

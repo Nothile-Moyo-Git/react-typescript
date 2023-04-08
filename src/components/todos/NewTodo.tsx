@@ -100,6 +100,7 @@ const NewTodo = () => {
                     aria-labelledby="taskLabel"
                     aria-required
                     data-testid="new-todo-input"
+                    maxLength={100}
                 />
 
                 <button data-testid="new-todo-button" className={isInputValid ? "new-todo__submit" : "new-todo__submit new-todo__submit--error"} disabled={!isInputValid}>Submit</button>
